@@ -108,7 +108,18 @@
              
                 return $consulta->execute();
             }
+        }
+
+
+        public static function altaTematica(Tematica $t){
+            $descripcion= $t->descripcion;
+            
+            $consulta = self::$conexion->prepare("Insert into tematica (descripcion) VALUES (:descripcion)");
+
+            $consulta->bindParam(':descripcion',$descripcion);
             
             
+            
+            return $consulta->execute();
         }
     }

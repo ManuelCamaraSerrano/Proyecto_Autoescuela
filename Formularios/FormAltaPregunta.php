@@ -72,6 +72,21 @@
         <label>Foto: </label>  <input type="file" name="foto" class="foto"> 
         <?php if(isset($validacion->errores['apellidos']))  echo $validacion->errores['apellidos'] ?>  <br> <br> 
 
+        <label>Opcion 1</label> <br>
+        <input type="text" name="opcion1" class="opcion1"> 
+        <input type="radio" name="opcion" class="opcion1" value="op1"> <br>
+
+        <label>Opcion 2</label> <br>
+        <input type="text" name="opcion2" class="opcion2"> 
+        <input type="radio" name="opcion" class="opcion2" value="op2"> <br>
+
+        <label>Opcion 3</label> <br>
+        <input type="text" name="opcion3" class="opcion3"> 
+        <input type="radio" name="opcion" class="opcion3" value="op3"> <br>
+
+        <label>Opcion 4</label> <br>
+        <input type="text" name="opcion4" class="opcion4"> 
+        <input type="radio" name="opcion" class="opcion4" value="op4"> <br> <br>
         
         <input type="submit" name="aceptar" class="aceptar"  value="Aceptar"> <br> <br>
     </form>
