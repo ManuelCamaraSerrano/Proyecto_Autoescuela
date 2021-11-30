@@ -12,11 +12,11 @@
         require_once "../php/Usuario.php";
         
         Sesion::iniciar();
-        
+        /*
         if(!Sesion::existe("usuario"))
         {
             header("Location: ../login/loginForm.php");
-        }
+        }*/
         $validacion = new Validacion();
     ?>
 </head>
@@ -31,10 +31,6 @@
         $validacion->CadenaRango("nombre",20);
         $validacion->Requerido("apellidos");
         $validacion->CadenaRango("apellidos",20);
-        $validacion->Requerido("contraseña");
-        $validacion->CadenaRango("contraseña",20);
-        $validacion->Requerido("contraseñaConfirm");
-        $validacion->CadenaRango("contraseña",20);
         $validacion->Requerido("fechanac");
 
         if(count($validacion->errores)==0)
@@ -45,6 +41,7 @@
             $respuesta = DB::altaUsuario($usuario);
             if($respuesta){
                 echo "Usuario Introducido";
+                
             }
             else{
                 echo "Error, El usuario no se ha podido introducir";

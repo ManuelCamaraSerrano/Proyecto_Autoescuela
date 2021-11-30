@@ -1,10 +1,11 @@
 <?php
-class Pregunta{
+class Pregunta  implements JsonSerializable{
     private $id;
     private $enunciado;
     private $tematica;
     private $foto;
     private $respuestaCorrecta;
+    private $nombreTematica;
     
 
     public function __construct($_id, $_enunciado, $_tematica, $_foto, $_respuestaCorrecta){
@@ -13,6 +14,7 @@ class Pregunta{
         $this->tematica = $_tematica;
         $this->foto = $_foto;
         $this->respuestaCorrecta = $_respuestaCorrecta;
+
     }
 
     public function __get($property){
@@ -29,5 +31,9 @@ class Pregunta{
 
     public function __toString(){
         return "ID: ".$this->id." Enunciado: ".$this->enunciado." Tematica: ".$this->tematica;
+    }
+
+    public function jsonSerialize() {
+        return (object) get_object_vars($this);
     }
 }

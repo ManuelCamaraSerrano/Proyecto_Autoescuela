@@ -1,5 +1,5 @@
 <?php
-class Tematica{
+class Tematica  implements JsonSerializable{
     private $id;
     private $descripcion;
     
@@ -24,5 +24,8 @@ class Tematica{
 
     public function __toString(){
         return "ID: ".$this->id." Descripcion: ".$this->descripcion;
+    }
+    public function jsonSerialize() {
+        return (object) get_object_vars($this);
     }
 }

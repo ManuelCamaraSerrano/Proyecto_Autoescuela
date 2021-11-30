@@ -39,6 +39,22 @@ class Validacion
     }
 
     /**
+     * Comprueba si esta vacio
+     *
+     * @param [type] $campo
+     * @return boolean
+     */ 
+    public function Radiopulsado($campo)
+    {
+        if(!isset($_POST[$campo]) || empty($_POST[$campo]))
+        {
+            $this->errores[$campo]="No ha señalado que opcion es la correcta";
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Método que comprueba que el campo es un valor entero
      * y de manera opcional un rango de valores
      *

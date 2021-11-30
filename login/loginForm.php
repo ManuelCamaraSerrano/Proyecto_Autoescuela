@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../css/main.css">
     <?php
          require_once("Login.php");
          require_once "../php/Sesion.php";
@@ -41,17 +42,17 @@
                 $error="Usuario no encontrado";
             }
 
-            
-            echo $error;
         }
     ?>
-    <h1>LOGIN: </h1> 
+    <img src="../img/Logo.png" alt="" class="logo"> 
     <form action="loginForm.php" method="post">
-        <label>Email: </label> <input type="text" name="email" class="email" value="<?php echo $email ?>"> <br> <br>
-        <label>Contraseña:</label>  <input type="text" name="contrasenia" class="contrasenia" value="<?php echo $contrasenia ?>">  <br> <br>
-        <input type="submit" name="login" class="login" value="Login"> <br> <br>
-        <label>Recuerdame: </label> <input type="checkbox" name="check" checked=<?php $check ?>> 
+        <h1><span>Autoescuela</span> Juanchu</h1>
+        <label>Email </label> <input type="text" name="email" class="email" value="<?php echo $email ?>"> <br> <br>
+        <label>Contraseña</label>  <input type="text" name="contrasenia" class="contrasenia" value="<?php echo $contrasenia ?>">  <br> <br>
+        <?php echo "<p>$error</p>";?>
+        <input type="submit" name="login" class="login" value="Iniciar sesión"> <br><br>
+        <label class="recuerdame">Recuerdame: </label> <input type="checkbox" name="check" checked=<?php $check ?>> 
+        <a href="">¿Has olvidado la contraseña?</a>
     </form>
-    <a href="">¿Has olvidado la contraseña?</a>
 </body>
 </html>

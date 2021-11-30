@@ -2,6 +2,8 @@
     require_once "Usuario.php";
     require_once "Tematica.php";
     require_once "Pregunta.php";
+    require_once "Respuesta.php";
+    require_once "Examen.php";
 
     class DB{
         private static $conexion;
@@ -29,11 +31,10 @@
             $fechanac= $a->fechanac;
             $activo= $a->activo;
             
-            $consulta = self::$conexion->prepare("Insert into usuario (email, nombre, apellidos, contrasenia, fechanac, rol, activo) VALUES (:email, :nombre, :apellidos, :contrasenia, :fechanac, :rol, $activo)");
+            $consulta = self::$conexion->prepare("Insert into usuario (email, nombre, apellidos, fechanac, rol, activo) VALUES (:email, :nombre, :apellidos, :fechanac, :rol, $activo)");
 
             $consulta->bindParam(':nombre',$nombre);
             $consulta->bindParam(':email',$email);
-            $consulta->bindParam(':contrasenia',$contrasenia);
             $consulta->bindParam(':rol',$rol);
             $consulta->bindParam(':apellidos',$apellidos);
             $consulta->bindParam(':fechanac',$fechanac);
@@ -117,9 +118,96 @@
             $consulta = self::$conexion->prepare("Insert into tematica (descripcion) VALUES (:descripcion)");
 
             $consulta->bindParam(':descripcion',$descripcion);
+
+            return $consulta->execute();
+        }
+
+        public static function altaRespuestas(Respuesta $r){
+            $pregunta= $r->pregunta;
+            $pregunta=intval($pregunta);
+            $enunciado= $r->enunciado;
+            
+            $consulta = self::$conexion->prepare("Insert into respuesta (pregunta,enunciado) VALUES ($pregunta, :enunciado)");
+
+            $consulta->bindParam(':enunciado',$enunciado);
             
             
             
             return $consulta->execute();
+
         }
+
+        public static function leeIdPreguntas()
+        {
+            $resultado = self::$conexion->query("SELECT idpreguntas FROM pregunta order by idpreguntas desc limit 1");
+            while ($registro = $resultado->fetch()) {
+                $id = $registro['idpreguntas'];
+            }
+            
+            return $id;
+        }
+
+        public static function leePreguntas()
+        {
+            $array = array();
+            $resultado = self::$conexion->query("SELECT idpreguntas, enunciado, tematica, foto FROM pregunta");
+            while ($registro = $resultado->fetch()) {
+                $p = new Pregunta($registro['idpreguntas'],$registro['enunciado'],$registro['tematica'],$registro['foto'],null);
+                $array[]=$p;
+            }
+            
+            return $array;
+        }
+
+        public static function leeIdRespuesta($limit)
+        {
+            $resultado = self::$conexion->query("SELECT id FROM respuesta order by id desc limit $limit");
+            while ($registro = $resultado->fetch()) {
+                $id = $registro['id'];
+            }
+            
+            return $id;
+        }
+
+        public static function actualizaIdPregunta($idpregunta,$idrespuesta){
+            
+            $consulta = self::$conexion->prepare("Update pregunta set respuesta_correcta='$idrespuesta' where idpreguntas='$idpregunta'");
+
+            return $consulta->execute();
+
+        }
+
+
+        public static function altaExamen(Examen $e){
+            $descripcion= $e->descripcion;
+            $duracion=intval($e->duracion);
+            $npreguntas=intval($e->npreguntas);
+            
+            $consulta = self::$conexion->prepare("Insert into examen (descripcion,duracion,npreguntas) VALUES (:descripcion, $duracion, $npreguntas)");
+
+            $consulta->bindParam(':descripcion',$descripcion);
+            
+            return $consulta->execute();
+
+        }
+
+        public static function leeIdExamen()
+        {
+            $resultado = self::$conexion->query("SELECT id FROM examen order by id desc limit 1");
+            while ($registro = $resultado->fetch()) {
+                $id = $registro['id'];
+            }
+            
+            return $id;
+        }
+
+
+        public static function insertaPreguntaExamen($idexamen,$idpregunta){
+            
+            $consulta = self::$conexion->prepare("Insert into examen_preguntas (idexamen,idpregunta) VALUES ($idexamen,$idpregunta)");
+          
+            return $consulta->execute();
+
+        }
+
     }
