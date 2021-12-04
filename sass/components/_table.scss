@@ -1,10 +1,14 @@
 table{
-	background-color: white;
+    position: relative;
+	background-color: #3e4750;
 	text-align: left;
 	border-collapse: collapse;
-	width: 100%;
+	width: 50%;
+    height: 200px;
+    overflow-y: scroll;
+    color: white;
     thead{
-        background-color: #950101;
+        background-color: #ff0000;
         border-bottom: solid 5px black;
         color: white;
     }
@@ -12,15 +16,31 @@ table{
         padding: 20px;
     }
     
-    tr:nth-child(even){
-        background-color: #d67e7e;
+    tr{
+        &:nth-child(even){
+            background-color: #242b31 ;
+        }
+        
+        &:hover td{
+            background-color: red;
+            color: white;
+        }
+
+        &.desactivado{
+            display: none;
+        }
     }
     
-    tr:hover td{
-        background-color: red;
-        color: white;
-    }
 }
+
+.tablaExamen{
+    float: left;
+    width: 45%;
+    margin-left: 4%;
+}
+
+
+
 
 
 

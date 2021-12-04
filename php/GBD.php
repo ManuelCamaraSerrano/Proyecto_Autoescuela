@@ -23,7 +23,7 @@
         }
 
         public static function altaUsuario(Usuario $a){
-            $contrasenia= $a->contrasenia;
+            $contrasenia= md5($a->contrasenia);
             $nombre=$a->nombre;
             $email=$a->email;
             $apellidos=$a->apellidos;
@@ -31,7 +31,7 @@
             $fechanac= $a->fechanac;
             $activo= $a->activo;
             
-            $consulta = self::$conexion->prepare("Insert into usuario (email, nombre, apellidos, fechanac, rol, activo) VALUES (:email, :nombre, :apellidos, :fechanac, :rol, $activo)");
+            $consulta = self::$conexion->prepare("Insert into usuario (email, nombre, apellidos, contrasenia, fechanac, rol, activo) VALUES (:email, :nombre, :apellidos, '$contrasenia', :fechanac, :rol, $activo)");
 
             $consulta->bindParam(':nombre',$nombre);
             $consulta->bindParam(':email',$email);
@@ -40,6 +40,16 @@
             $consulta->bindParam(':fechanac',$fechanac);
             
             
+            return $consulta->execute();
+        }
+
+        public static function altaUsuarioMasiva($nombre,$email){
+            
+            
+            $consulta = self::$conexion->prepare("Insert into usuario (email, nombre) VALUES ('$email', '$nombre')");
+
+            $consulta->bindParam(':nombre',$nombre);
+            $consulta->bindParam(':email',$email);    
             return $consulta->execute();
         }
 
@@ -61,6 +71,17 @@
         {
             $u=null;
             $resultado = self::$conexion->query("SELECT id, email, nombre, apellidos, contrasenia, fechanac, rol, foto, activo FROM usuario WHERE email='$email' && contrasenia='$contrasenia'");
+            while ($registro = $resultado->fetch()) {
+                $u= new Usuario($registro["id"],$registro["email"],$registro["nombre"],$registro["apellidos"],$registro["contrasenia"],$registro["fechanac"],$registro["rol"],$registro["foto"],$registro["activo"]);
+            }
+            
+            return $u;
+        }
+
+        public static function leeUsuarioPorId($id)
+        {
+            $u=null;
+            $resultado = self::$conexion->query("SELECT id, email, nombre, apellidos, contrasenia, fechanac, rol, foto, activo FROM usuario WHERE id='$id'");
             while ($registro = $resultado->fetch()) {
                 $u= new Usuario($registro["id"],$registro["email"],$registro["nombre"],$registro["apellidos"],$registro["contrasenia"],$registro["fechanac"],$registro["rol"],$registro["foto"],$registro["activo"]);
             }
@@ -209,5 +230,64 @@
             return $consulta->execute();
 
         }
+
+        public static function actualizaUsuario(Usuario $a){
+            $id = intval($a->id);
+            $contrasenia= $a->contrasenia;
+            $nombre=$a->nombre;
+            $email=$a->email;
+            $apellidos=$a->apellidos;
+            $rol= $a->rol;
+            $fechanac= $a->fechanac;
+            $activo= $a->activo;
+            
+            $consulta = self::$conexion->prepare("UPDATE usuario SET email='$email', nombre='$nombre', apellidos='$apellidos', contrasenia='$contrasenia', fechanac='$fechanac' WHERE id=$id");
+            return $consulta->execute();
+        }
+
+        public static function altaUsuarioConfirm($idusuario, $codigo){
+            $id= intval($idusuario);
+
+            $consulta = self::$conexion->prepare("Insert into confirmarusuario (codigoconfirm,idusuario) VALUES ('$codigo', '$id')");
+
+            return $consulta->execute();
+
+        }
+
+        public static function leeIdUsuario()
+        {
+            $resultado = self::$conexion->query("SELECT id FROM usuario order by id desc limit 1");
+            while ($registro = $resultado->fetch()) {
+                $id = $registro['id'];
+            }
+            
+            return $id;
+        }
+
+        public static function leeIDUsuarioConfirm($codigo)
+        {
+            $resultado = self::$conexion->query("SELECT idusuario FROM confirmarusuario where codigoconfirm='$codigo'");
+            while ($registro = $resultado->fetch()) {
+                $id = $registro['idusuario'];
+            }
+            
+            return $id;
+        }
+
+
+        public static function actualizaContraseniaUsuario($id, $contrasenia){
+            $idusuario = intval($id);
+            
+            $consulta = self::$conexion->prepare("UPDATE usuario SET contrasenia='$contrasenia' WHERE id=$id");
+            return $consulta->execute();
+        }
+
+        public static function borraUsuarioConfirm($codigo){
+            
+            $consulta = self::$conexion->prepare("delete from confirmarusuario WHERE codigoconfirm='$codigo'");
+            return $consulta->execute();
+        }
+
+
 
     }

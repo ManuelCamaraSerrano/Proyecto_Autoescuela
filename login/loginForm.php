@@ -19,6 +19,11 @@
                 $contrasenia= $cookie[1];
                 $check= true;
             }
+            else{
+                $email ="";
+                $contrasenia= "";
+            }
+       
     ?>
 </head>
 <body>
@@ -26,6 +31,10 @@
         
         if(isset($_POST['login']))
         {
+            if(!isset($_COOKIE["recuerdame"]))
+            {
+                $contrasenia = md5($_POST["contrasenia"]);
+            }
             if(isset($_POST['check']))
             {
                 $check=true;
@@ -33,7 +42,11 @@
             else{
                 $check=false;
             }
-            $existe = Login::identificaUsuario($_POST['email'],$_POST['contrasenia'],$check);
+            if(!isset($_COOKIE['recuerdame']))
+            {
+                $contrasenia = md5($_POST['contrasenia']);
+            }
+            $existe = Login::identificaUsuario($_POST['email'],$contrasenia,$check);
             if($existe)
             {
                 header("Location: prueba.php");
@@ -45,10 +58,10 @@
         }
     ?>
     <img src="../img/Logo.png" alt="" class="logo"> 
-    <form action="loginForm.php" method="post">
+    <form action="loginForm.php" method="post" class="login">
         <h1><span>Autoescuela</span> Juanchu</h1>
         <label>Email </label> <input type="text" name="email" class="email" value="<?php echo $email ?>"> <br> <br>
-        <label>Contraseña</label>  <input type="text" name="contrasenia" class="contrasenia" value="<?php echo $contrasenia ?>">  <br> <br>
+        <label>Contraseña</label>  <input type="password" name="contrasenia" class="contrasenia" value="<?php echo $contrasenia ?>">  <br> <br>
         <?php echo "<p>$error</p>";?>
         <input type="submit" name="login" class="login" value="Iniciar sesión"> <br><br>
         <label class="recuerdame">Recuerdame: </label> <input type="checkbox" name="check" checked=<?php $check ?>> 

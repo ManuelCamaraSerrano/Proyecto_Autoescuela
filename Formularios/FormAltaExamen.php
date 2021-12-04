@@ -61,18 +61,20 @@
             }
         ?>
 
+    <form action="" method="post" id="form" class="examen">
     <h1>Alta Examen</h1>
-    <form action="" method="post" id="form">
-        
+        <section>
             <label>Descripcion: </label>  <input type="text" name="descripcion" class="descripcion" id="descripcion"> 
-            <?php if(isset($validacion->errores['descripcion']))  echo $validacion->errores['descripcion'] ?>  <br> <br> 
-
+            <?php if(isset($validacion->errores['descripcion']))  echo $validacion->errores['descripcion'] ?>  
+        </section>
+        <section>
             <label>Duración: </label>  <input type="text" name="duracion" class="duracion" id="duracion" maxlength="3"> 
-            <?php if(isset($validacion->errores['duracion'])) echo $validacion->errores['duracion'] ?>  <br> <br>
-
-            <label>Número de Preguntas: </label>  <input type="text" name="npreguntas" class="npreguntas" id="npreguntas"> 
-            <?php if(isset($validacion->errores['npreguntas']))  echo $validacion->errores['npreguntas'] ?>  <br> <br> 
-
+            <?php if(isset($validacion->errores['duracion'])) echo $validacion->errores['duracion'] ?>  
+        </section>
+        <section>
+            <label>Número de Preguntas: </label>  <input type="text" name="npreguntas" class="pequenio" id="npreguntas"> 
+            <?php if(isset($validacion->errores['npreguntas']))  echo $validacion->errores['npreguntas'] ?> 
+        </section>
             <label>Temáticas: </label> <select name="tematica" id="tematica">
                 <option value=""></option>
                 <?php 
@@ -82,10 +84,10 @@
                         echo "<option value=".$tematicas[$i]->id.">".$tematicas[$i]->descripcion."</option>";
                     }
                 ?>
-            </select>  <br> <br>
-        <label>Preguntas insertadas: </label>  <input type="text" name="pinsert" class="pinsert" id="pinsert" readonly="true"> 
+            </select>  
+        <label>Preguntas insertadas: </label>  <input type="text" name="pinsert" class="pequenio" id="pinsert" readonly="true"> 
         <main id="preguntas">
-        <table editable="" id="tabla" border="1">
+        <table editable="" id="tabla" border="1" class="tablaExamen">
             <thead>
                 <tr>
                     <th>Enunciado</th>
@@ -98,7 +100,7 @@
         </main>
 
         <main class="preguntasSeleccionadas">
-            <table editable="" id="tabla2" border="1">
+            <table editable="" id="tabla2" border="1" class="tablaExamen">
                 <thead>
                     <tr>
                         <th>Enunciado</th>

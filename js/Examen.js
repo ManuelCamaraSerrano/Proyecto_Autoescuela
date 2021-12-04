@@ -101,12 +101,24 @@ window.addEventListener("load",function(){
 
         td1.ondrop=function(ev)
         {
-            ev.preventDefault();
-            ev.stopPropagation();
-            var data = ev.dataTransfer.getData("text");
-            const fila=ev.target.parentNode;
-            fila.parentNode.insertBefore(document.getElementById(data),fila);
-            pinsert.value=tbody2.children.length;
+            if(td1.parentNode.parentNode.parentNode.id=="tabla"){
+                ev.preventDefault();
+                ev.stopPropagation();
+                var data = ev.dataTransfer.getData("text");
+                const fila=ev.target.parentNode;
+                fila.parentNode.insertBefore(document.getElementById(data),fila);
+                pinsert.value=tbody2.children.length;
+            }
+            if(tbody2.children.length<parseInt(npreguntas.value))
+                {
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    var data = ev.dataTransfer.getData("text");
+                    const fila=ev.target.parentNode;
+                    fila.parentNode.insertBefore(document.getElementById(data),fila);
+                    pinsert.value=tbody2.children.length;
+                }
+            
         }
         
         var td2=document.createElement("td");
@@ -119,11 +131,24 @@ window.addEventListener("load",function(){
 
         td2.ondrop=function(ev)
         {
-            ev.preventDefault();
-            ev.stopPropagation();
-            var data = ev.dataTransfer.getData("text");
-            const fila=ev.target.parentNode;
-            fila.parentNode.insertBefore(document.getElementById(data),fila);
+            if(td2.parentNode.parentNode.parentNode.id=="tabla"){
+                ev.preventDefault();
+                ev.stopPropagation();
+                var data = ev.dataTransfer.getData("text");
+                const fila=ev.target.parentNode;
+                fila.parentNode.insertBefore(document.getElementById(data),fila);
+                pinsert.value=tbody2.children.length;
+            }
+            if(tbody2.children.length<parseInt(npreguntas.value))
+                {
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    var data = ev.dataTransfer.getData("text");
+                    const fila=ev.target.parentNode;
+                    fila.parentNode.insertBefore(document.getElementById(data),fila);
+                    pinsert.value=tbody2.children.length;
+                }
+            
         }
 
         tr.appendChild(td1);
@@ -155,13 +180,16 @@ window.addEventListener("load",function(){
 
     tabla2.addEventListener("drop",function(ev) 
     {
-        if(tbody2.children.length==0)
-        {
-            pinsert.value=1;
+        if(npreguntas.value!=""){
+
+            if(tbody2.children.length==0)
+            {
+                pinsert.value=1;
+            }
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");        
+            ev.target.tBodies[0].appendChild(document.getElementById(data));
         }
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");        
-        ev.target.tBodies[0].appendChild(document.getElementById(data));
     });
 
     tabla2.addEventListener("dragover", function(ev)
@@ -169,21 +197,7 @@ window.addEventListener("load",function(){
         ev.preventDefault();
     });
 
-    tabla.addEventListener("drop",function(ev) 
-    {
-        if(tbody2.children.length==0)
-        {
-            pinsert.value=1;
-        }
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");        
-        ev.target.tBodies[0].appendChild(document.getElementById(data));
-    });
-
-    tabla.addEventListener("dragover", function(ev)
-    {
-        ev.preventDefault();
-    });
+    
 
     
    
