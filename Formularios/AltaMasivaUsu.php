@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/main.css">
-
+    <script src="../js/AltaMasivaUsu.js"></script>
     <?php
         require_once "../php/Sesion.php";
         require_once "../php/GBD.php";
@@ -43,16 +43,36 @@
                 // Luego insertamos cada uno de los usuarios mediante un bucle
                 for($i=0; $i<count($cadenadividida);$i++){
                     DB::abreConexion();
-                    DB::altaUsuarioMasiva($cadenadividida[$i][0],$cadenadividida[$i][1]);
+                    $respuesta = DB::altaUsuarioMasiva($cadenadividida[$i][0],$cadenadividida[$i][1]);
+                    if($respuesta){
+                        // Si se inserto el usuario mostramos un mensaje de que se ha introducido
+                        echo "Usuario Introducido";
+                        // Leemos el id del ultimo usuario introducido 
+                        $idUsuario = DB::leeIdUsuario();
+                        // Introducimos en la tabla usuarioConfirmar al ultimo usuario que hemos introducido
+                        $codigo = generaContrasenia();
+                        $insertado = DB::altaUsuarioConfirm($idUsuario,$codigo);
+                        if($insertado)
+                        {
+                            // Por ultimo le enviamos el correo si se ha metido en la tabla si no le notificamos que ha habido un error
+                            enviaCorreo($codigo);
+                        }
+                        else{
+                            echo "Error, no se ha podido introducir el usuario en la tabla de confirmacion";
+                        }
+                    }
+                    else{
+                        echo "Error, El usuario no se ha podido introducir";
+                    }
                 }
             }
         }
     ?>
     <form action="" method="post" enctype="multipart/form-data">
         <h1>Alta Masiva Usuarios</h1>
-        <label>Alumnos: </label> <textarea name="alumnos" rows="10" cols="60"></textarea> 
+        <label>Alumnos: </label> <textarea name="alumnos" rows="10" cols="60" id="textUsu"></textarea> 
         <?php if(isset($validacion->errores['alumnos'])) echo $validacion->errores['alumnos'] ?>  
-        <input type="file" name="csv" class="csv"  value="csv">
+        <input type="file" name="csv" class="csv"  value="csv" id="csv" accept=".csv">
         <input type="submit" name="aceptar" class="aceptar"  value="Aceptar"> 
     </form>
 </body>
