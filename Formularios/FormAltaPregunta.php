@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../vendor/fontawesome/css/all.css">
     <?php
         require_once "../php/Sesion.php";
         require_once "../php/GBD.php";
         require_once "../php/validacion.php";
         require_once "../php/Tematica.php";
+        require_once "../librerias/libreria.php";
 
         Sesion::iniciar();
         
@@ -24,6 +26,7 @@
 </head>
 <body>
 <?php
+    pintaCabecera();
     if(isset($_POST['aceptar']))
     {
         // Validamos los datos
@@ -124,5 +127,8 @@
         <input type="submit" name="aceptar" class="aceptar"  value="Aceptar"> <br> <br>
     </form>
     <?php if(isset($validacion->errores['opcion'])) echo $validacion->errores['opcion'] ?>
+    <?php
+        pintaPieDePagina();
+    ?>
 </body>
 </html>

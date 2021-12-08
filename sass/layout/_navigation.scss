@@ -1,0 +1,40 @@
+@import "../utilities/variables";
+
+nav{
+    box-shadow: 0px 10px 10px $negro;
+    width: 550px;
+    background-color: $rojo;
+    display: flex;
+    justify-content: space-between;
+    ul{   
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        li{
+            &:hover > ul{
+                display: block;
+            }
+            ul{
+                display: flex;
+                flex-direction: column;
+                background-color: $grisOscuro;
+                position: absolute;
+                display: none;
+                box-shadow: 0px 10px 10px $negro;
+            }
+        }
+    }
+    a{
+        text-decoration: none;
+        font-size: 23px;
+        color: white;
+        padding: 12px 20px;
+        display: block;
+        -webkit-transition: background-color 1s ease;
+        -moz-transition: background-color 1s ease;
+        transition: background-color 1s ease; 
+        &:hover{
+            background-color: $rojo;
+        }
+    }
+}

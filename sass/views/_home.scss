@@ -1,14 +1,25 @@
+// Estilos para el login
+// Importamos las variables
+@import "../utilities/variables";
 
+
+// Al body le ponemos un color de fondo
 body{
-    background-color: #f0f2f5;
+    background-color: $colorFondo;
 }
 
+// .logo es una clase que contiene una imagen con el logo
 .logo{
+    // Lo flotamos a la derecha le ponemos el tamaño y los margenes
     float: left;
     margin-left: 16%;
     margin-right: 8%;
     margin-top: 4%;
     width: 250px;
-    font-family: Arial, Helvetica, sans-serif;
 }
+
+
+
+
+ 
 

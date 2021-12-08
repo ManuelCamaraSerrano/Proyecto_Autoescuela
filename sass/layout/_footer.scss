@@ -1,0 +1,67 @@
+// Estilos para el pie de página
+
+// Importamos las variables
+@import "../utilities/variables";
+
+footer{
+    // Le colocamos una posicion fija y en la parte inferior de la página
+    width: 96%;
+    height: 350px;
+    bottom: 0;
+    margin-top: 6%;
+    background-color: $grisOscuro;
+    padding: 2%;
+    border-top: solid $rojo 6px;
+
+    h1{
+        color: white;
+        font-size: 30px;
+        margin-left: 10%;
+        margin-bottom: 1%;
+    }
+
+    iframe{
+        // Lo flotamos a la derecha, le asignamos un tamaño y le ajustamos los margenes
+        float: left;
+        width: 400px;
+        height: 300px;
+        margin-left: 2%;
+    }
+    ul{
+        float: left;
+        list-style: none;
+        display: block;
+        margin-left: 8%;
+        font-size: $tamanioLetraPie;
+        color:  $fondoHeader;
+        p{
+            color: $colorFondo;
+            margin-bottom: 15%;
+        }
+        li{
+            list-style:none;
+            display:block;
+            margin-bottom: 18%;
+        }
+        a{
+            color: $fondoHeader;
+            -webkit-transition:color 1s ease;
+            -moz-transition:color 1s ease;
+            transition:color 1s ease; 
+            &:hover{
+                color: $rojo;
+                text-decoration: none;
+            }
+        }
+    }
+    hr{
+        float: left;
+        width: 900px;
+        height: 2px;
+        background-color: $fondoHeader;
+        margin-top:2%;
+        margin-left: 6%;
+        border: solid $fondoHeader;
+        border-radius: 10px 10px 10px 10px;
+    }
+}

@@ -1,28 +1,33 @@
+// Estilos para las tablas
+
+// Importamos las variables
+@import "../utilities/variables";
+
 table{
-    position: relative;
-	background-color: #3e4750;
-	text-align: left;
+	background-color: $grisClaro;
 	border-collapse: collapse;
-	width: 50%;
+    margin-top: 5%;
+    margin-left: 14%;
+	width: 75%;
     height: 200px;
-    overflow-y: scroll;
     color: white;
     thead{
-        background-color: #ff0000;
-        border-bottom: solid 5px black;
+        background-color: $rojo;
+        border-bottom: solid 5px $negro;
         color: white;
     }
     th, td{
         padding: 20px;
+        text-align: center;
     }
     
     tr{
         &:nth-child(even){
-            background-color: #242b31 ;
+            background-color: $grisOscuro ;
         }
         
         &:hover td{
-            background-color: red;
+            background-color: $rojo;
             color: white;
         }
 
@@ -38,8 +43,6 @@ table{
     width: 45%;
     margin-left: 4%;
 }
-
-
 
 
 

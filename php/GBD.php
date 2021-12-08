@@ -108,6 +108,16 @@
         }
 
 
+        public static function buscaTematicaNombre($descripcion){
+            $resultado = self::$conexion->query("SELECT idtematica FROM tematica where descripcion='$descripcion'");
+            while ($registro = $resultado->fetch()) {
+                $id= $registro["idtematica"];
+            }
+            
+            return $id;
+        }
+
+
         public static function altaPregunta(Pregunta $p){
             $enunciado= $p->enunciado;
             $tematica=$p->tematica;
@@ -286,6 +296,24 @@
             
             $consulta = self::$conexion->prepare("delete from confirmarusuario WHERE codigoconfirm='$codigo'");
             return $consulta->execute();
+        }
+
+
+        public static function obtieneUsuariosPaginados(int $pagina, int $filas=6):array
+        {
+            $registros = array();
+            $res = self::$conexion->query("select * from usuario");
+            $registros =$res->fetchAll();
+            $total = count($registros);
+            $paginas = ceil($total /$filas);
+            $registros = array();
+            if ($pagina <= $paginas)
+            {
+                $inicio = ($pagina-1) * $filas;
+                $res= self::$conexion->query("select * from usuario limit $inicio, $filas");
+                $registros = $res->fetchAll(PDO::FETCH_ASSOC);
+            }
+            return $registros;
         }
 
 

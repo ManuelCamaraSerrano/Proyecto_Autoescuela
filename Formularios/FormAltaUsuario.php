@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../vendor/fontawesome/css/all.css">
     <?php
         require_once "../php/Sesion.php";
         require_once "../php/GBD.php";
@@ -36,60 +37,61 @@
 </head>
 <body>
     <?php
-    if(isset($_POST['aceptar']))
-    {
-        // Validamos los datos
-        $validacion->Email("email");
-        $validacion->CadenaRango("email",30);
-        $validacion->Requerido("nombre");
-        $validacion->CadenaRango("nombre",20);
-        $validacion->Requerido("apellidos");
-        $validacion->CadenaRango("apellidos",20);
-        $validacion->Requerido("fechanac");
-
-        if(count($validacion->errores)==0 && $formInsertar)
+        pintaCabecera();
+        if(isset($_POST['aceptar']))
         {
-            // Si no hay errores insertamos el usuario
-            DB::abreConexion();
-            $usuario = new Usuario(null,$_POST['email'],$_POST['nombre'],$_POST['apellidos'],generaContrasenia(),$_POST['fechanac'],$_POST['rol'],"",0);
-            $respuesta = DB::altaUsuario($usuario);
-            if($respuesta){
-                // Si se inserto el usuario mostramos un mensaje de que se ha introducido
-                echo "Usuario Introducido";
-                // Leemos el id del ultimo usuario introducido 
-                $idUsuario = DB::leeIdUsuario();
-                // Introducimos en la tabla usuarioConfirmar al ultimo usuario que hemos introducido
-                $codigo = generaContrasenia();
-                $insertado = DB::altaUsuarioConfirm($idUsuario,$codigo);
-                if($insertado)
-                {
-                     // Por ultimo le enviamos el correo si se ha metido en la tabla si no le notificamos que ha habido un error
-                    enviaCorreo($codigo);
+            // Validamos los datos
+            $validacion->Email("email");
+            $validacion->CadenaRango("email",30);
+            $validacion->Requerido("nombre");
+            $validacion->CadenaRango("nombre",20);
+            $validacion->Requerido("apellidos");
+            $validacion->CadenaRango("apellidos",20);
+            $validacion->Requerido("fechanac");
+
+            if(count($validacion->errores)==0 && $formInsertar)
+            {
+                // Si no hay errores insertamos el usuario
+                DB::abreConexion();
+                $usuario = new Usuario(null,$_POST['email'],$_POST['nombre'],$_POST['apellidos'],generaContrasenia(),$_POST['fechanac'],$_POST['rol'],"",0);
+                $respuesta = DB::altaUsuario($usuario);
+                if($respuesta){
+                    // Si se inserto el usuario mostramos un mensaje de que se ha introducido
+                    echo "Usuario Introducido";
+                    // Leemos el id del ultimo usuario introducido 
+                    $idUsuario = DB::leeIdUsuario();
+                    // Introducimos en la tabla usuarioConfirmar al ultimo usuario que hemos introducido
+                    $codigo = generaContrasenia();
+                    $insertado = DB::altaUsuarioConfirm($idUsuario,$codigo);
+                    if($insertado)
+                    {
+                        // Por ultimo le enviamos el correo si se ha metido en la tabla si no le notificamos que ha habido un error
+                        enviaCorreo($codigo);
+                    }
+                    else{
+                        echo "Error, no se ha podido introducir el usuario en la tabla de confirmacion";
+                    }
                 }
                 else{
-                    echo "Error, no se ha podido introducir el usuario en la tabla de confirmacion";
+                    echo "Error, El usuario no se ha podido introducir";
                 }
             }
             else{
-                echo "Error, El usuario no se ha podido introducir";
+                // En caso de que estemos en modo modificación creamos el usuario y lo actualizamos
+                DB::abreConexion();
+                $usuModi = new Usuario($u->id,$_POST['email'],$_POST['nombre'],$_POST['apellidos'],$_POST['contraseña'],$_POST['fechanac'],$u->rol,"",0);
+                $respuesta = DB::actualizaUsuario($usuModi);
+                if($respuesta){
+                    echo "Usuario Actualizado";
+                    Sesion::escribir('usuario',$usuModi);
+                }
+                else{
+                    echo "Error, El usuario no se ha podido actualizar";
+                }
             }
-        }
-        else{
-            // En caso de que estemos en modo modificación creamos el usuario y lo actualizamos
-            DB::abreConexion();
-            $usuModi = new Usuario($u->id,$_POST['email'],$_POST['nombre'],$_POST['apellidos'],$_POST['contraseña'],$_POST['fechanac'],$u->rol,"",0);
-            $respuesta = DB::actualizaUsuario($usuModi);
-            if($respuesta){
-                echo "Usuario Actualizado";
-                Sesion::escribir('usuario',$usuModi);
-            }
-            else{
-                echo "Error, El usuario no se ha podido actualizar";
-            }
-        }
 
-        
-    }
+            
+        }
     ?>
 
     <form action="" method="post">
@@ -118,5 +120,8 @@
                              </select>  <br> <br>
         <input type="submit" name="aceptar" class="aceptar"  value="Aceptar"> <br> <br>
     </form>
+    <?php
+        pintaPieDePagina();
+    ?>
 </body>
 </html>

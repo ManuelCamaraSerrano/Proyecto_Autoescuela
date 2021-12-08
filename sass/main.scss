@@ -1,4 +1,8 @@
+@import "utilities/variables";
 @import "base/reset";
 @import "views/home";
 @import "components/table";
 @import "layout/_forms.scss";
+@import "layout/header";
+@import "layout/navigation";
+@import "layout/footer";

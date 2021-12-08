@@ -1,5 +1,5 @@
 <?php
-class Usuario{
+class Usuario implements JsonSerializable{
     private $id;
     private $email;
     private $nombre;
@@ -36,6 +36,10 @@ class Usuario{
 
     public function __toString(){
         return "ID: ".$this->id." Nombre: ".$this->nombre." Apellidos: ".$this->apellidos;
+    }
+
+    public function jsonSerialize() {
+        return (object) get_object_vars($this);
     }
 
 }
