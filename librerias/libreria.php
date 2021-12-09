@@ -53,30 +53,30 @@
               <li>
                 <a href=''>Usuarios</a>
                 <ul>
-                   <li><a href=''> Alta de Usuario</a></li>
-                   <li><a href=''>Alta Masiva</a></li>
+                   <li><a href='FormAltaUsuario.php'> Alta de Usuario</a></li>
+                   <li><a href='AltaMasivaUsu.php'>Alta Masiva</a></li>
                 </ul>
               </li>
 
               <li>
                 <a href=''>Temáticas</a>
                 <ul>
-                   <li><a href=''>Alta Temática</a></li>
+                   <li><a href='FormAltaTematica.php'>Alta Temática</a></li>
                 </ul>
               </li>
 
               <li>
                 <a href=''>Preguntas</a>
                 <ul>
-                   <li><a href=''> Alta Pregunta</a></li>
-                   <li><a href=''>Alta Masiva</a></li>
+                   <li><a href='FormAltaPregunta.php'> Alta Pregunta</a></li>
+                   <li><a href='AltaMasivaPreguntas.php'>Alta Masiva</a></li>
                 </ul>
               </li>
 
               <li>
                 <a href=''>Examenes</a>
                 <ul>
-                   <li><a href=''> Alta Examen</a></li>
+                   <li><a href='FormALtaExamen.php'> Alta Examen</a></li>
                    <li><a href=''>Histórico</a></li>
                 </ul>
               </li>
@@ -84,12 +84,16 @@
         </nav>
         <div class='social'>
           <ul>
-            <li><a href='' lang='es-ES' class='fab fa-twitter'></a></li>
-            <li><a href='https://www.youtube.com/channel/UCLy9lmj_0cqffXUzbGHNmYA' target='_blank' class='fab fa-instagram'></a></li>
-            <li><a href='https://www.instagram.com/sevillafc/' target='_blank' class='fab fa-facebook'></a></li>
+            <li><a href='https://twitter.com/autojuanchu' lang='es-ES' class='fab fa-twitter'></a></li>
+            <li><a href='https://www.instagram.com/autoescuela_juanchu/' target='_blank' class='fab fa-instagram'></a></li>
+            <li><a href='https://es-es.facebook.com/autoescuelajuanchu/' target='_blank' class='fab fa-facebook'></a></li>
           </ul>
         </div>
-        <img src='../img/Joman.jpg' alt='' id='fotoUsu'>
+        <img src=".$_SESSION['usuario']->foto." alt='' id='fotoUsu'>
+        <ul class='editarSalir'>
+          <li><a href='FormAltaUsuario.php' class='fas fa-edit'></a></li>
+          <li><a href='../login/logoff.php' class='fas fa-door-open'></a></li>
+        </ul>
     </header>";
     }
 

@@ -6,7 +6,6 @@
 table{
 	background-color: $grisClaro;
 	border-collapse: collapse;
-    margin-top: 5%;
     margin-left: 14%;
 	width: 75%;
     height: 200px;
@@ -22,6 +21,12 @@ table{
     }
     
     tr{
+        &.marcado{
+            border:3px solid blue;
+        }
+        &.oculto{
+            display:none;
+        }
         &:nth-child(even){
             background-color: $grisOscuro ;
         }
@@ -40,9 +45,20 @@ table{
 
 .tablaExamen{
     float: left;
-    width: 45%;
+    width: 550px;
     margin-left: 4%;
+    height: 600px;
+    overflow-y: scroll;
+
+    th, td{
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+    }
 }
+
+
+
 
 
 

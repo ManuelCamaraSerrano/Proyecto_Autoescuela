@@ -88,7 +88,10 @@
                     }
                 ?>
             </select>  
+
         <label>Preguntas insertadas: </label>  <input type="text" name="pinsert" class="pequenio" id="pinsert" readonly="true"> 
+        <span class="fa fa-search"></span> <input type="text" id="filtro">
+
         <main id="preguntas">
         <table editable="" id="tabla" border="1" class="tablaExamen">
             <thead>

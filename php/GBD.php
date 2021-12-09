@@ -255,6 +255,12 @@
             return $consulta->execute();
         }
 
+        public static function actualizaUsuarioTabla($id,$nombre,$rol,$fechanac,$activo){
+  
+            $consulta = self::$conexion->prepare("UPDATE usuario SET nombre='$nombre', rol='$rol', activo='$activo', fechanac='$fechanac' WHERE id=$id");
+            return $consulta->execute();
+        }
+
         public static function altaUsuarioConfirm($idusuario, $codigo){
             $id= intval($idusuario);
 
@@ -295,6 +301,12 @@
         public static function borraUsuarioConfirm($codigo){
             
             $consulta = self::$conexion->prepare("delete from confirmarusuario WHERE codigoconfirm='$codigo'");
+            return $consulta->execute();
+        }
+
+        public static function borraUsuario($codigo){
+            
+            $consulta = self::$conexion->prepare("delete from usuario WHERE id='$codigo'");
             return $consulta->execute();
         }
 

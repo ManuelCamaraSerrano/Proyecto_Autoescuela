@@ -10,7 +10,20 @@ window.addEventListener("load",function(){
    var descripcion=document.getElementById("descripcion");
    var npreguntas=document.getElementById("npreguntas");
    var pinsert = document.getElementById("pinsert");
-  
+   const filtro=document.getElementById("filtro");
+
+
+   filtro.onkeyup=function(){
+       const tr=tbody.getElementsByTagName("tr");
+       for(let i=0;i<tr.length;i++){
+           tr[i].classList.remove("marcado");
+           if(tr[i].innerHTML.indexOf(filtro.value)<0)
+               tr[i].classList.add("oculto")
+           else
+               tr[i].classList.remove("oculto")
+        }
+   }
+
     btnAceptar.onclick = function(ev){
         ev.preventDefault();
         // Cuando pulse el boton de aceptar le enviaremos el array de las preguntas elegidas

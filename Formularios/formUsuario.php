@@ -27,6 +27,7 @@
 <body>
     <?php
         pintaCabecera();
+        
     ?>
 
     <main>
@@ -45,8 +46,10 @@
         </table>
     </main>
     
+    <main class="paginacion" name="paginacion" id="paginacion">
+
+    </main>
     <?php
-        pintaPaginacion("usuario");
         pintaPieDePagina();
     ?>
 </body>

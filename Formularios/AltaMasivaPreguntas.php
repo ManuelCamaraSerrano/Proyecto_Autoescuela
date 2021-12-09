@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../vendor/fontawesome/css/all.css">
     <script src="../js/AltaMasivaPreguntas.js"></script>
     <?php
         require_once "../php/Sesion.php";
@@ -27,6 +28,7 @@
 </head>
 <body>
     <?php
+        pintaCabecera();
             if(isset($_POST['aceptar']))
             {
                 // Validamos los datos
@@ -82,5 +84,8 @@
         <input type="file" name="csv" class="csv"  value="csv" id="csv" accept=".csv">
         <input type="submit" name="aceptar" class="aceptar"  value="Aceptar"> 
     </form>
+    <?php
+        pintaPieDePagina();
+    ?>
 </body>
 </html>

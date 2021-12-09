@@ -1,12 +1,7 @@
 window.addEventListener("load",function(){
     const tabla = document.getElementById("tabla");
     const tbody = document.getElementById("tbody");
-    const pag1 = document.getElementById("pag1");
-    const pag2 = document.getElementById("pag2");
-    const pag3 = document.getElementById("pag3");
-    const pag4 = document.getElementById("pag4");
-    const pag5 = document.getElementById("pag5");
-    const lista = document.getElementById("lista");
+    const paginacion = document.getElementById("paginacion");
 
     var formData = new FormData();        
         const ajax = new XMLHttpRequest();
@@ -17,33 +12,36 @@ window.addEventListener("load",function(){
                 respuesta=JSON.parse(respuesta);
                 for(let i=0;i<respuesta.length;i++)
                 {
-                    insertarFila(respuesta[i]['nombre'],respuesta[i]['rol'],respuesta[i]['fechanac'],respuesta[i]['activo']);
+                    insertarFila(respuesta[i]['id'],respuesta[i]['nombre'],respuesta[i]['rol'],respuesta[i]['fechanac'],respuesta[i]['activo']);
                 }
             }
         }
         ajax.open("POST","../formularios/paginacion.php");
         ajax.send(formData);
+
+        crearPaginacion();
         
-    lista.onclick = function(){
-        var formData = new FormData();        
-        const ajax = new XMLHttpRequest();
-        ajax.onreadystatechange = function(){
-            if(ajax.readyState==4 && ajax.status==200)
-            {
-                var respuesta = ajax.responseText;
-                respuesta=JSON.parse(respuesta);
-                for(let i=0;i<respuesta.length;i++)
-                {
-                    insertarFila(respuesta[i]['nombre'],respuesta[i]['rol'],respuesta[i]['fechanac'],respuesta[i]['activo']);
+    function paginator(pagina){
+        var texto=encodeURI("pagina="+pagina);
+            // Mandamos el ajax con el id del usuario para que desde php lo borren de la BD
+            const ajax=new XMLHttpRequest();
+            ajax.onreadystatechange=function(ev){
+                ev.preventDefault();
+                if(ajax.readyState==4 && ajax.status==200){
+                    var respuesta=ajax.responseText;
+                    if (respuesta=="OK"){
+                        alert("Nuevas filas");
+                    }
                 }
-            }
-        }
-        ajax.open("POST","../formularios/paginacion.php");
-        ajax.send(formData);
+            }          
+            ajax.open("POST","../Formularios/paginacion.php?clase");
+            ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            ajax.send(texto);
     }
     
-    function insertarFila(nombre,rol,fechanac,activado){
+    function insertarFila(id,nombre,rol,fechanac,activado){
         var tr=document.createElement("tr");
+        tr.className="Usu"+id;
         var td1=document.createElement("td");
         var td2=document.createElement("td");
         var td4=document.createElement("td");
@@ -56,13 +54,34 @@ window.addEventListener("load",function(){
 
         var borrar=document.createElement("span");
         borrar.className="fa fa-trash fa-2x";
+
         borrar.onclick=function(){
             var fila = this.parentNode.parentNode;
-            fila.parentNode.removeChild(fila);
+            id=fila.className.slice(3);
+            var texto=encodeURI("borrar="+id);
+            // Mandamos el ajax con el id del usuario para que desde php lo borren de la BD
+            const ajax=new XMLHttpRequest();
+            ajax.onreadystatechange=function(ev){
+                ev.preventDefault();
+                if(ajax.readyState==4 && ajax.status==200){
+                    var respuesta=ajax.responseText;
+                    if (respuesta=="OK"){
+                        // Si la respuesta es Ok le mostraremos un mensaje de alerta y lo borraremos de la tabla
+                        alert("Esta seguro que desea borrar este Usuario");
+                        var fila = this.parentNode.parentNode;
+                        fila.parentNode.removeChild(fila);
+                        alert("Usuario Borrado");
+                    }
+                }
+            }          
+            ajax.open("POST","../Formularios/paginacion.php?clase");
+            ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            ajax.send(texto);
         }
+
         var editar=document.createElement("span");
         editar.className="fa fa-edit fa-2x";
-        //editar.onclick=editarFila;
+        editar.onclick=editarFila;
 
         td6.appendChild(borrar);
         td6.appendChild(editar);
@@ -75,6 +94,7 @@ window.addEventListener("load",function(){
     }
 
     function editarFila(){
+
         var fila=this.parentElement.parentElement;
         var contenedor=document.createElement("div");
         var td = this.parentElement;
@@ -91,8 +111,6 @@ window.addEventListener("load",function(){
             tds[i].removeChild(tds[i].childNodes[0]);
             tds[i].appendChild(input);
         }
-        // Esta linea coge el input del dni y lo deshabilita para que no se modifique
-        tds[0].children[0].disabled=true;
         var spanC=document.createElement("span");
         var spanG=document.createElement("span");
         spanC.className="fa fa-times fa-2x";
@@ -121,28 +139,86 @@ window.addEventListener("load",function(){
         var td = this.parentElement;
         var tds=fila.children;
         var respuestas=[];
-        respuestas.push((tds[0].children[0].value.esDNI())?true:false);
+        respuestas.push((tds[0].children[0].value!="")?true:false);
         respuestas.push((tds[1].children[0].value!="")?true:false);
-        respuestas.push((parseInt(tds[2].children[0].value)==tds[2].children[0].value)?true:false);
+        respuestas.push((tds[2].children[0].value!="")?true:false);
+        respuestas.push((parseInt(tds[3].children[0].value)==tds[3].children[0].value)?true:false);
 
         // Este for recorre los td y si son falsos les pone el borde en rojo
-        for(i=0;i<3;i++)
+        for(i=0;i<4;i++)
         {
             if(respuestas[i]==false){
                 tds[i].children[0].className="error";
             }
         }
+        
+        id=fila.className.slice(3);
 
-        if (respuestas.every(function(valor,indice){return valor})){
-            for(let i=0;i<tds.length-1;i++){
-                let valor=tds[i].children[0].value;
-                tds[i].innerHTML=valor;
-            }
-            td.innerHTML="";
-            td.appendChild(fila.contenedor.children[0]);
-            td.appendChild(fila.contenedor.children[0]);
-        }
+        //Mandamos el ajax con el id del usuario y sus campos para actualizarlos
+        var texto=encodeURI("editar="+id+"& nombre="+tds[0].children[0].value+"& rol="+tds[1].children[0].value+"& fechanac="+tds[2].children[0].value+"& activo="+tds[3].children[0].value);
+        const ajax=new XMLHttpRequest();
+            ajax.onreadystatechange=function(ev){
+                ev.preventDefault();
+                if(ajax.readyState==4 && ajax.status==200){
+                    var respuesta=ajax.responseText;
+                    if (respuesta=="OK"){
+                        // Si la respuesta es Ok editamos los campos y mostramos de nuevo los iconos de borrar y editar
+                        if (respuestas.every(function(valor,indice){return valor})){
+                            for(let i=0;i<tds.length-1;i++){
+                                let valor=tds[i].children[0].value;
+                                tds[i].innerHTML=valor;
+                            }
+                            td.innerHTML="";
+                            td.appendChild(fila.contenedor.children[0]);
+                            td.appendChild(fila.contenedor.children[0]);
+                        }
+                        alert("Usuario Editado");
+                    }
+                }
+            }          
+            ajax.open("POST","../Formularios/paginacion.php?clase");
+            ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            ajax.send(texto);
+        
     }
+
+    function crearPaginacion(){
+        var botonIni = document.createElement('button');
+        botonIni.innerText="<<";
+        paginacion.appendChild(botonIni);
+        for (i=0; i<4; i++){
+            var boton = document.createElement('button');
+            boton.innerText=(i+1);
+            boton.onclick = function(){
+                var texto=encodeURI("pagina="+this.innerText);
+                // Mandamos el ajax con el id del usuario para que desde php lo borren de la BD
+                const ajax=new XMLHttpRequest();
+                ajax.onreadystatechange=function(ev){
+                    ev.preventDefault();
+                    if(ajax.readyState==4 && ajax.status==200){
+                        var respuesta=ajax.responseText;
+                            respuesta=JSON.parse(respuesta);
+                            tbody.innerHTML="";
+                            for(let i=0;i<respuesta.length;i++)
+                            {
+                                insertarFila(respuesta[i]['id'],respuesta[i]['nombre'],respuesta[i]['rol'],respuesta[i]['fechanac'],respuesta[i]['activo']);
+                            }
+                        
+                    }
+                }          
+                ajax.open("POST","../Formularios/paginacion.php?clase");
+                ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                ajax.send(texto);
+            }
+            paginacion.appendChild(boton);
+            }
+        }
+        var botonFin = document.createElement('button');
+        botonFin.innerText=">>";
+        paginacion.appendChild(botonFin);
+
+
+    
 
     
 })

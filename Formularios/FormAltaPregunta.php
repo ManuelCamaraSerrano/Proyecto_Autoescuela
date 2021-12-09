@@ -85,9 +85,8 @@
         
     }
     ?>
-<h1>Alta de Preguntas</h1>
     <form action="" method="post" enctype="multipart/form-data">
-
+        <h1>Alta de Preguntas</h1>
         <label>Tematica: </label> <select name="tematica">
             <?php 
                 // Introducimos todas las tematicas que existen en el combobox

@@ -23,7 +23,7 @@
         }
         else{
             $u = Sesion::leer('usuario');
-            if($u->rol=="alumno")
+            if($u->rol=="Alumno")
             {
                 $formInsertar=false;
             }
@@ -104,12 +104,6 @@
 
         <label>Apellidos: </label>  <input type="text" name="apellidos" class="apellidos" value=<?php if(!$formInsertar){echo $_SESSION["usuario"]->apellidos;} else{ echo "";}?>> 
         <?php if(isset($validacion->errores['apellidos']))  echo $validacion->errores['apellidos'] ?>  <br> <br> 
-
-        <label>Contraseña: </label>   <input type="text" name="contraseña" class="contraseña" value=<?php if(!$formInsertar){echo $_SESSION["usuario"]->contrasenia;} else{ echo "";}?>> 
-        <?php if(isset($validacion->errores['contraseña'])) echo $validacion->errores['contraseña'] ?> <br> <br> 
-
-        <label>Confirmar Contraseña:</label> <input type="text" name="contraseñaConfirm" class="contraseñaConfirm"> 
-        <?php if(isset($validacion->errores['contraseñaConfirm'])) echo $validacion->errores['contraseñaConfirm'] ?> <br> <br>
 
         <label>Fecha nacimiento: </label> <input type="date" name="fechanac" class="fechanac" value=<?php if(!$formInsertar){echo $_SESSION["usuario"]->fechanac;} else{ echo "";}?>> 
         <?php if(isset($validacion->errores['fechanac'])) echo $validacion->errores['fechanac'] ?><br> <br>

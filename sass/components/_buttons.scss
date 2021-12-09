@@ -1,0 +1,26 @@
+// Estilos para el pie de página
+
+// Importamos las variables
+@import "../utilities/variables";
+
+input[type="submit"]{
+    font-size: 130%;
+    border-radius: 5px 5px 5px 5px;
+    background-color: $rojo;
+    color: $fondoHeader;
+    border-color: $rojo ;
+}
+
+
+.paginacion{
+    margin-left: 37%;
+    margin-top: 3%;
+    button{
+        width: 70px;
+        font-size: 130%;
+        background-color: $grisClaro;
+        color: $fondoHeader;
+        border-color: $grisClaro;
+    }
+}
+

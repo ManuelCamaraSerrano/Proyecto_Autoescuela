@@ -67,7 +67,6 @@ body {
 table {
   background-color: #3e4750;
   border-collapse: collapse;
-  margin-top: 5%;
   margin-left: 14%;
   width: 75%;
   height: 200px;
@@ -82,6 +81,12 @@ table th, table td {
   padding: 20px;
   text-align: center;
 }
+table tr.marcado {
+  border: 3px solid blue;
+}
+table tr.oculto {
+  display: none;
+}
 table tr:nth-child(even) {
   background-color: #242b31;
 }
@@ -95,8 +100,15 @@ table tr.desactivado {
 
 .tablaExamen {
   float: left;
-  width: 45%;
+  width: 550px;
   margin-left: 4%;
+  height: 600px;
+  overflow-y: scroll;
+}
+.tablaExamen th, .tablaExamen td {
+  width: 100%;
+  padding: 20px;
+  text-align: center;
 }
 
 form {
@@ -142,8 +154,10 @@ form.examen input:not([type=submit]).pequenio {
   width: 6%;
 }
 form.examen input[type=submit] {
-  margin-top: 50%;
-  margin-left: 0;
+  margin-top: 8%;
+  margin-left: 45%;
+  width: 100px;
+  height: 50px;
 }
 form.examen section {
   float: left;
@@ -176,21 +190,31 @@ form input:not([type=submit]) {
   width: 90%;
   padding: 2%;
 }
-form input[type=submit] {
-  font-size: 130%;
-  border-radius: 5px 5px 5px 5px;
-  background-color: #dd2a1b;
-  color: white;
-  border-color: #dd2a1b;
-}
 form .recuerdame {
   float: left;
 }
 form select {
-  width: 10%;
+  width: 150px;
   padding: 3px;
-  font-size: 90%;
+  font-size: 130%;
   margin-bottom: 3%;
+}
+form span.fa-search {
+  position: absolute;
+  margin-top: 6%;
+  margin-left: 8%;
+}
+form #filtro {
+  float: left;
+  margin-top: 2%;
+  border-radius: 20px 20px 20px 20px;
+  font-size: 130%;
+  width: 18%;
+  padding: 5px;
+  padding-left: 10px;
+}
+form table {
+  display: inline;
 }
 
 header {
@@ -198,6 +222,7 @@ header {
   height: 130px;
   -webkit-box-shadow: 0px 8px 8px black;
           box-shadow: 0px 8px 8px black;
+  margin-bottom: 5%;
 }
 header img {
   float: left;
@@ -249,6 +274,14 @@ header #fotoUsu {
   width: 100px;
   height: 100px;
   background-color: black;
+}
+header .editarSalir a {
+  background-color: #bf0000;
+  color: white;
+  border-radius: 50%;
+  margin-top: 11px;
+  margin-left: 2%;
+  padding: 1%;
 }
 
 nav {
@@ -358,4 +391,24 @@ footer hr {
   margin-left: 6%;
   border: solid white;
   border-radius: 10px 10px 10px 10px;
+}
+
+input[type=submit] {
+  font-size: 130%;
+  border-radius: 5px 5px 5px 5px;
+  background-color: #bf0000;
+  color: white;
+  border-color: #bf0000;
+}
+
+.paginacion {
+  margin-left: 37%;
+  margin-top: 3%;
+}
+.paginacion button {
+  width: 70px;
+  font-size: 130%;
+  background-color: #3e4750;
+  color: white;
+  border-color: #3e4750;
 }/*# sourceMappingURL=main.css.map */
