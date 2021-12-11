@@ -48,8 +48,8 @@
             if(isset($_FILES['foto']))
             {
                 // Guardamos la foto en la carpeta img
-                move_uploaded_file($_FILES['foto']['tmp_name'],"img/".$_FILES['foto']['name']);
-                $pregunta->foto="img/".$_FILES['foto']['name'];
+                move_uploaded_file($_FILES['foto']['tmp_name'],"../img/".$_FILES['foto']['name']);
+                $pregunta->foto="../img/".$_FILES['foto']['name'];
             }
             
             $respuesta = DB::altaPregunta($pregunta);

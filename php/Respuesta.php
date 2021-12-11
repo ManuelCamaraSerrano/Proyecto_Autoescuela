@@ -1,5 +1,5 @@
 <?php
-class Respuesta{
+class Respuesta implements JsonSerializable{
     private $id;
     private $pregunta;
     private $enunciado;
@@ -26,5 +26,9 @@ class Respuesta{
 
     public function __toString(){
         return "ID: ".$this->id." Enunciado: ".$this->enunciado." Pregunta: ".$this->pregunta;
+    }
+
+    public function jsonSerialize() {
+        return (object) get_object_vars($this);
     }
 }

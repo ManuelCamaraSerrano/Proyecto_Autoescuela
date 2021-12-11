@@ -190,6 +190,28 @@
             return $array;
         }
 
+        public static function leePreguntaporID($id)
+        {
+            $resultado = self::$conexion->query("SELECT idpreguntas, enunciado, tematica, foto, respuesta_correcta FROM pregunta where idpreguntas=$id");
+            while ($registro = $resultado->fetch()) {
+                $p = new Pregunta($registro['idpreguntas'],$registro['enunciado'],$registro['tematica'],$registro['foto'],$registro['respuesta_correcta']);
+            }
+            
+            return $p;
+        }
+
+        public static function leeRespuestaPorPregunta($id)
+        {
+            $array = array();
+            $resultado = self::$conexion->query("select * from respuesta where pregunta = $id");
+            while ($registro = $resultado->fetch()) {
+                $r = new Respuesta($registro['id'],$registro['pregunta'],$registro['enunciado']);
+                $array[]= $r;
+            }
+            
+            return $array;
+        }
+
         public static function leeIdRespuesta($limit)
         {
             $resultado = self::$conexion->query("SELECT id FROM respuesta order by id desc limit $limit");
@@ -261,6 +283,12 @@
             return $consulta->execute();
         }
 
+        public static function actualizaTematica($descripcion, $id){
+  
+            $consulta = self::$conexion->prepare("UPDATE tematica SET descripcion='$descripcion' WHERE idtematica=$id");
+            return $consulta->execute();
+        }
+
         public static function altaUsuarioConfirm($idusuario, $codigo){
             $id= intval($idusuario);
 
@@ -310,6 +338,12 @@
             return $consulta->execute();
         }
 
+        public static function borraTematica($codigo){
+            
+            $consulta = self::$conexion->prepare("delete from tematica WHERE idtematica='$codigo'");
+            return $consulta->execute();
+        }
+
 
         public static function obtieneUsuariosPaginados(int $pagina, int $filas=6):array
         {
@@ -328,6 +362,43 @@
             return $registros;
         }
 
+        public static function obtieneTematicasPaginados(int $pagina, int $filas=6):array
+        {
+            $registros = array();
+            $res = self::$conexion->query("select * from tematica");
+            $registros =$res->fetchAll();
+            $total = count($registros);
+            $paginas = ceil($total /$filas);
+            $registros = array();
+            if ($pagina <= $paginas)
+            {
+                $inicio = ($pagina-1) * $filas;
+                $res= self::$conexion->query("select * from tematica limit $inicio, $filas");
+                $registros = $res->fetchAll(PDO::FETCH_ASSOC);
+            }
+            return $registros;
+        }
 
+
+        public static function leeExamenAleatorio()
+        {
+            $resultado = self::$conexion->query("select * from examen order by rand() limit 1");
+            while ($registro = $resultado->fetch()) {
+                $e = new Examen($registro['id'],$registro['descripcion'],$registro['duracion'],$registro['npreguntas'],$registro['activo']);
+            } 
+            return $e;
+        }
+
+
+        public static function leePreguntasPorExamen($id)
+        {
+            $array = array();
+            $resultado = self::$conexion->query("select idpregunta from examen_preguntas where idexamen = $id");
+            while ($registro = $resultado->fetch()) {
+                $id = $registro['idpregunta'];
+                $array[]=$id;
+            } 
+            return $array;
+        }
 
     }

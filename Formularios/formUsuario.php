@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../vendor/fontawesome/css/all.css">
+    <script src="../validacionesJS/validaciones.js"></script>
     <script src="../js/formUsuario.js"></script>
     <?php
         require_once "../php/Sesion.php";

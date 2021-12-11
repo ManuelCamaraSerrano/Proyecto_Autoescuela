@@ -1,0 +1,54 @@
+// Estilos para el pie de página
+
+// Importamos las variables
+@import "../utilities/variables";
+
+main{
+    &#contenedorExamen{
+        width: 70%;
+        margin-left: 15%;
+
+        .desactivo{
+            display: none;
+        }
+        
+        section{
+            width: 100%;
+            border-radius: 10px 10px 10px 10px;
+            border: $rojo solid ;
+            background: $fondoHeader;
+            display: inline-block;
+            padding: 2%;
+
+            h1{
+                float: left;
+                font-size: 130%;
+            }
+            
+            h2{
+                float: left;
+                margin-left: 2%;
+                font-size: 130%;
+                width: 600px;
+                margin-right: 3%;
+                margin-bottom: 3%;
+            }
+
+            img{
+                float: left;
+                margin-top: 3%;
+                width: 300px;
+                height: 300px;
+                margin-right: 1%;
+            }
+
+            div{
+                display: block;
+                font-size: 130%;
+                margin-top: 2%;
+                margin-left: 40%;
+            }
+            
+        }
+    }
+}

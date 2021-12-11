@@ -46,12 +46,18 @@
     }
 
     function pintaCabecera(){
+      if(isset($_SESSION['usuario'])){
+        $foto= $_SESSION['usuario']->foto;
+      }
+      else{
+        $foto="";
+      }
       echo "<header>
       <img src='../img/Logo.png' alt=''>
         <nav>
            <ul>
               <li>
-                <a href=''>Usuarios</a>
+                <a href='formUsuario.php'>Usuarios</a>
                 <ul>
                    <li><a href='FormAltaUsuario.php'> Alta de Usuario</a></li>
                    <li><a href='AltaMasivaUsu.php'>Alta Masiva</a></li>
@@ -89,7 +95,7 @@
             <li><a href='https://es-es.facebook.com/autoescuelajuanchu/' target='_blank' class='fab fa-facebook'></a></li>
           </ul>
         </div>
-        <img src=".$_SESSION['usuario']->foto." alt='' id='fotoUsu'>
+        <img src=".$foto."  id='fotoUsu'>
         <ul class='editarSalir'>
           <li><a href='FormAltaUsuario.php' class='fas fa-edit'></a></li>
           <li><a href='../login/logoff.php' class='fas fa-door-open'></a></li>
@@ -131,5 +137,4 @@
               </ul>
           </section>";
     }
-
-    
+   
