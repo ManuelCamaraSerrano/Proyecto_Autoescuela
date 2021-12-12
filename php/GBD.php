@@ -289,6 +289,12 @@
             return $consulta->execute();
         }
 
+        public static function actualizaPregunta($enunciado,$id){
+        
+            $consulta = self::$conexion->prepare("UPDATE pregunta SET enunciado='$enunciado' WHERE idpreguntas=$id");
+            return $consulta->execute();
+        }
+
         public static function altaUsuarioConfirm($idusuario, $codigo){
             $id= intval($idusuario);
 
@@ -344,6 +350,12 @@
             return $consulta->execute();
         }
 
+        public static function borraPregunta($codigo){
+            
+            $consulta = self::$conexion->prepare("delete from pregunta WHERE idpreguntas='$codigo'");
+            return $consulta->execute();
+        }
+
 
         public static function obtieneUsuariosPaginados(int $pagina, int $filas=6):array
         {
@@ -374,6 +386,40 @@
             {
                 $inicio = ($pagina-1) * $filas;
                 $res= self::$conexion->query("select * from tematica limit $inicio, $filas");
+                $registros = $res->fetchAll(PDO::FETCH_ASSOC);
+            }
+            return $registros;
+        }
+
+        public static function obtieneExamenesPaginados(int $pagina, int $filas=6):array
+        {
+            $registros = array();
+            $res = self::$conexion->query("select * from examen");
+            $registros =$res->fetchAll();
+            $total = count($registros);
+            $paginas = ceil($total /$filas);
+            $registros = array();
+            if ($pagina <= $paginas)
+            {
+                $inicio = ($pagina-1) * $filas;
+                $res= self::$conexion->query("select * from examen limit $inicio, $filas");
+                $registros = $res->fetchAll(PDO::FETCH_ASSOC);
+            }
+            return $registros;
+        }
+
+        public static function obtienePreguntasPaginados(int $pagina, int $filas=6):array
+        {
+            $registros = array();
+            $res = self::$conexion->query("select * from pregunta");
+            $registros =$res->fetchAll();
+            $total = count($registros);
+            $paginas = ceil($total /$filas);
+            $registros = array();
+            if ($pagina <= $paginas)
+            {
+                $inicio = ($pagina-1) * $filas;
+                $res= self::$conexion->query("select * from pregunta limit $inicio, $filas");
                 $registros = $res->fetchAll(PDO::FETCH_ASSOC);
             }
             return $registros;

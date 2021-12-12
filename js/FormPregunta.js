@@ -13,23 +13,28 @@ window.addEventListener("load",function(){
                 respuesta=JSON.parse(respuesta);
                 for(let i=0;i<respuesta.length;i++)
                 {
-                    insertarFila(respuesta[i]['id'],respuesta[i]['descripcion']);
+                    insertarFila(respuesta[i]['id'],respuesta[i]['enunciado'],respuesta[i]['nombreTematica']);
                 }
             }
         }
-        ajax.open("POST","../formularios/paginacionTematica.php");
+        ajax.open("POST","../formularios/paginacionPregunta.php");
         ajax.send(formData);
 
         crearPaginacion();
     
-    function insertarFila(id,descripcion){
+    function insertarFila(id,enunciado,nombreTematica){
         // Creamos el tr 
         var tr=document.createElement("tr");
-        tr.className="tem"+id;
+        tr.className="Usu"+id;
         // Creamos los td
         var td1=document.createElement("td");
-        td1.innerText= descripcion;
         var td2=document.createElement("td");
+        var td4=document.createElement("td");
+        var td6 = document.createElement("td");
+        td1.innerHTML=id;
+        td2.innerHTML=enunciado;
+        td4.innerHTML=nombreTematica;
+        
 
         // Creamos el spam borrar
         var borrar=document.createElement("span");
@@ -48,13 +53,13 @@ window.addEventListener("load",function(){
                     var respuesta=ajax.responseText;
                     if (respuesta=="OK"){
                         // Si la respuesta es Ok le mostraremos un mensaje de alerta y lo borraremos de la tabla
-                        alert("Esta seguro que desea borrar esta Tematica");
+                        alert("Esta seguro que desea borrar esta pregunta");
                         tbody.removeChild(fila);
-                        alert("Tematica Borrada");
+                        alert("Pregunta Borrada");
                     }
                 }
             }          
-            ajax.open("POST","../Formularios/paginacionTematica.php?clase");
+            ajax.open("POST","../Formularios/paginacionPregunta.php?clase");
             ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             ajax.send(texto);
         }
@@ -65,11 +70,13 @@ window.addEventListener("load",function(){
         editar.onclick=editarFila;
 
         // Añadimos los td al tr y por ultimo el tr al tbody de la tabla
-        td2.appendChild(borrar);
-        td2.appendChild(editar);
+        td6.appendChild(borrar);
+        td6.appendChild(editar);
         tbody.appendChild(tr);
         tr.appendChild(td1);
         tr.appendChild(td2);
+        tr.appendChild(td4);
+        tr.appendChild(td6);
     }
 
     function editarFila(){
@@ -90,6 +97,9 @@ window.addEventListener("load",function(){
             tds[i].removeChild(tds[i].childNodes[0]);
             tds[i].appendChild(input);
         }
+
+        tds[0].children[0].disabled=true;
+        tds[2].children[0].disabled=true;
         // Borramos los otros iconos y metemos los iconos de cancelar y guardar
         var spanC=document.createElement("span");
         var spanG=document.createElement("span");
@@ -121,11 +131,10 @@ window.addEventListener("load",function(){
         var tds=fila.children;
         var respuestas=[];
         // Validamos si los campos introducidos son correctos
-        respuestas.push((tds[0].children[0].value!="")?true:false);
-        
+        respuestas.push((tds[1].children[0].value!="")?true:false);
 
         // Este for recorre los td y si son falsos les pone el borde en rojo
-        for(i=0;i<1;i++)
+        for(i=0;i<4;i++)
         {
             if(respuestas[i]==false){
                 tds[i].children[0].className="error";
@@ -135,7 +144,7 @@ window.addEventListener("load",function(){
         id=fila.className.slice(3);
 
         //Mandamos el ajax con el id del usuario y sus campos para actualizarlos
-        var texto=encodeURI("editar="+id+"& descripcion="+tds[0].children[0].value);
+        var texto=encodeURI("editar="+id+"& enunciado="+tds[1].children[0].value);
         const ajax=new XMLHttpRequest();
             ajax.onreadystatechange=function(ev){
                 ev.preventDefault();
@@ -152,11 +161,11 @@ window.addEventListener("load",function(){
                             td.appendChild(fila.contenedor.children[0]);
                             td.appendChild(fila.contenedor.children[0]);
                         }
-                        alert("Usuario Editado");
+                        alert("Pregunta Editada");
                     }
                 }
             }          
-            ajax.open("POST","../Formularios/paginacionTematica.php?clase");
+            ajax.open("POST","../Formularios/paginacionPregunta.php?clase");
             ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             ajax.send(texto);
         
@@ -176,10 +185,10 @@ window.addEventListener("load",function(){
             boton.onclick = function(){
                 var texto=encodeURI("pagina="+this.innerText);
                 let boton = document.querySelectorAll("button");
-                    for(let i=0; i<boton.length; i++){
-                        boton[i].className="desactivo";
-                    }
-            this.className="activo";
+                        for(let i=0; i<boton.length; i++){
+                            boton[i].className="desactivo";
+                        }
+                        this.className="activo";
                 const ajax=new XMLHttpRequest();
                 ajax.onreadystatechange=function(ev){
                     ev.preventDefault();
@@ -191,12 +200,12 @@ window.addEventListener("load",function(){
                             // Mediante un bucle vamos insertando las nuevas filas
                             for(let i=0;i<respuesta.length;i++)
                             {
-                                insertarFila(respuesta[i]['id'],respuesta[i]['descripcion']);
+                                insertarFila(respuesta[i]['id'],respuesta[i]['enunciado'],respuesta[i]['nombreTematica']);
                             }
                         
                     }
                 }          
-                ajax.open("POST","../Formularios/paginacionTematica.php?clase");
+                ajax.open("POST","../Formularios/paginacionPregunta.php?clase");
                 ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 ajax.send(texto);
             }

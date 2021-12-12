@@ -99,6 +99,13 @@ window.addEventListener("load",function(){
         function crearPaginacion(npreguntas){
             for (i=0; i<npreguntas; i++){
                 var boton = document.createElement('button');
+                if(i==0)
+                {
+                    boton.className="activo";
+                }
+                else{
+                    boton.className="desactivo";
+                }
                 boton.innerText=(i+1);
                 // Controlamos el onclick del boton para que cuando pulse se active esa pregunta y las demás se oculten
                 boton.onclick = function(){

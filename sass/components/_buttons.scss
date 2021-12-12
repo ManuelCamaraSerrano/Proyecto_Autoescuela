@@ -3,24 +3,35 @@
 // Importamos las variables
 @import "../utilities/variables";
 
+// Importamos los mixins
+@import "../utilities/mixins";
+
+// Estilos para los input de tipo boton
 input[type="submit"]{
-    font-size: 130%;
+    font-size: $tamanioLetra;  // Asignamos un tamaño a la letra
     border-radius: 5px 5px 5px 5px;
-    background-color: $rojo;
-    color: $fondoHeader;
+    @include colorFondo($fondoHeader,$rojo);
     border-color: $rojo ;
 }
 
 
 .paginacion{
+    // Ajustamos los margenes
     margin-left: 37%;
     margin-top: 3%;
     button{
-        width: 70px;
-        font-size: 130%;
-        background-color: $grisClaro;
-        color: $fondoHeader;
+        width: $tamanioBotonPag;  // Ajustamos el tamaño
+        font-size: $tamanioLetra; // Ajustamos el tamaño de la letra
+        @include colorFondo($fondoHeader,$grisClaro); // Le añadimos el color y el fondo
         border-color: $grisClaro;
+        @include transiciones(background-color,1s); // Le introducimos una transicion
+
+        &.activo{
+            background-color: $rojo;
+        }
+        &:hover{
+            background-color: $rojo;
+        }
     }
 }
 

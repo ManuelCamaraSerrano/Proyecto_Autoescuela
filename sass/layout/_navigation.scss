@@ -1,16 +1,23 @@
+// Importamos las variables
 @import "../utilities/variables";
 
+// Importamos los mixins
+@import "../utilities/mixins";
+
 nav{
+    // Le ponemos un efecto de sombra al menu
     box-shadow: 0px 10px 10px $negro;
-    width: 550px;
-    background-color: $rojo;
+    width: $tamanioNav; 
+    @include colorFondo($fondoHeader,$rojo);  // Este include añade el fondo y el color
     display: flex;
     justify-content: space-between;
     ul{   
+        // Le quitamos los estilos por defecto de las listas
         list-style: none;
         display: flex;
         justify-content: space-between;
         li{
+            // Cuando pasamos por encima del li mostramos sus otras opciones
             &:hover > ul{
                 display: block;
             }
@@ -20,19 +27,18 @@ nav{
                 background-color: $grisOscuro;
                 position: absolute;
                 display: none;
-                box-shadow: 0px 10px 10px $negro;
+                box-shadow: 0px 10px 10px $negro;  // Aplicamos un sombreado a los ul que estan dentro de un li
             }
         }
     }
     a{
-        text-decoration: none;
-        font-size: 23px;
-        color: white;
+        font-family: 'Viga', sans-serif;
+        text-decoration: none; // Le quitamos el subrayado
+        font-size: 23px; // Asignamos un tamaño
+        color: white; // Le asignamos un color a la letra
         padding: 12px 20px;
         display: block;
-        -webkit-transition: background-color 1s ease;
-        -moz-transition: background-color 1s ease;
-        transition: background-color 1s ease; 
+        @include transiciones(background-color,1s); // Include para poner la transicion del fondo
         &:hover{
             background-color: $rojo;
         }

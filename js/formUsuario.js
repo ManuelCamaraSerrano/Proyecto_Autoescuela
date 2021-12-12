@@ -179,11 +179,19 @@ window.addEventListener("load",function(){
         paginacion.appendChild(botonIni);
         for (i=0; i<4; i++){
             var boton = document.createElement('button');
+            if(i==0){
+                boton.className="activo";
+            }
             boton.innerText=(i+1);
             // Controlamos el onclick del boton para que cuando pulse mande un ajax con la página que queremos que nos devuelva php
             boton.onclick = function(){
                 var texto=encodeURI("pagina="+this.innerText);
                 const ajax=new XMLHttpRequest();
+                let boton = document.querySelectorAll("button");
+                    for(let i=0; i<boton.length; i++){
+                        boton[i].className="desactivo";
+                    }
+                    this.className="activo";
                 ajax.onreadystatechange=function(ev){
                     ev.preventDefault();
                     if(ajax.readyState==4 && ajax.status==200){
@@ -196,8 +204,8 @@ window.addEventListener("load",function(){
                             {
                                 insertarFila(respuesta[i]['id'],respuesta[i]['nombre'],respuesta[i]['rol'],respuesta[i]['fechanac'],respuesta[i]['activo']);
                             }
-                        
                     }
+                    
                 }          
                 ajax.open("POST","../Formularios/paginacionUsuario.php?clase");
                 ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

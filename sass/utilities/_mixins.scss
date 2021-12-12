@@ -1,0 +1,24 @@
+// Importamos las variables
+@import "../utilities/variables";
+
+
+// Mixin para poner el color y el fondo le pasamos el color y el fondo que queremos poner
+ @mixin colorFondo ($color,$fondo) {
+    background-color: $fondo;
+    color: $color;
+  }
+
+
+  // Mixin que le das la propiedad, la duracion y el tiempo y te introduce la transicion
+ @mixin transiciones($propiedad,$duracion,$tiempo:linear) {
+    -moz-transition: $propiedad $duracion $tiempo;
+    -webkit-transition: $propiedad $duracion $tiempo;
+    transition: $propiedad $duracion $tiempo;
+  }
+
+  // Este Mixin se encarga de introducir la altura y la anchura, introduciendoselas como parametros
+  @mixin dimensiones($anchura,$altura){
+      width: $anchura;
+      height: $altura;
+  }
+

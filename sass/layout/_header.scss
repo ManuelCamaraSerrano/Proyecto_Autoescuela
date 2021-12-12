@@ -2,19 +2,22 @@
 // Importamos las variables
 @import "../utilities/variables";
 
+// Importamos los mixins
+@import "../utilities/mixins";
+
 header{
     // Le colocamos un fondo, una altura y le ponemos un efecto de sombreado 
     background-color: $fondoHeader;
-    height: 130px;
+    height: $alturaHeader;
     box-shadow: 0px 8px 8px $negro;
     margin-bottom: 5%;
 
     img{
-        // La flotamos a la derecha, ajustamos los margenes
+        // La flotamos a la derecha, ajustamos los margenes y tamaño
         float: left;
         margin-top: 1%;
         margin-left: 5%;
-        width: 150px;
+        width: $tamaniologo;
     }
     nav{
         // Lo flotamos a la derecha y le ajustamos los margenes
@@ -30,48 +33,72 @@ header{
         margin-top: 2%;
     
         ul {
+            // Deshabilitamos el estilo de las listas
             list-style: none;
-             display: block;
+             display: block; 
              li{
                 list-style:none;
                 display:inline;
                 float:left;
                 height:25px;
-                width: 60px;
+                width: $tamanioLista;
                 font-size: 25px;
+                
                 a {
                     display: inline-flex;
-                    color: $fondoHeader;
-                    background: $rojo;
+                    @include colorFondo($fondoHeader,$rojo);  // Este include añade el color y el fondo
                     padding: 10px;
-                    border-radius: 50px;
+                    border-radius: $bordeCircular;
                     text-decoration: none;
-                    -webkit-transition:padding 1s ease;
-                    -moz-transition:padding 1s ease;
-                    transition:padding 1s ease; 
-                    &:hover {
-                        padding: 20px 20px; 
+                    @include transiciones(all,0.5s);
+
+                    // Aplicamos la transicion especifica a twitter
+                    &.fa-twitter{
+                        // Este include añade las transiciones, en este caso ponemos all para que afecte a todas las propiedades
+                        &:hover {
+                           padding: 15px 15px;
+                           background: $fondoTwitter;
+                        }
+                    }
+
+                    // Aplicamos la transicion especifica a instagram
+                    &.fa-instagram{
+                        // Este include añade las transiciones, en este caso ponemos all para que afecte a todas las propiedades
+                        
+                        &:hover {
+                           padding: 15px 15px;
+                           background: $fondoInsta;
+                        }
+                    }
+    
+                    // Aplicamos la transicion especifica a facebook
+                    &.fa-facebook{
+                        // Este include añade las transiciones, en este caso ponemos all para que afecte a todas las propiedades
+                        &:hover {
+                           padding: 15px 15px;
+                           background: $fondoFacebook;
+                        }
                     }
                 }
+
             }
         }
     }
 
     #fotoUsu{
-        // La flotamos a la derecha le ajustamos el tamaño, los margenes y el fondo
-        float: left;
-        margin-left: 30%;
-        border-radius: 50%;  // Le ponemos los bordes redondeados
-        width: 100px;
-        height: 100px;
+        float: left; // Flotamos a la derecha
+        margin-left: 30%; // Ajustamos los margenes
+        border-radius: $bordeCircular;  // Le ponemos los bordes redondeados
+        width: $tamanioImgUsu;  //Ajustamos el tamaño
+        height: $tamanioImgUsu;
         background-color: $negro;
     }
 
     .editarSalir{
         a{
-            background-color: $rojo;
-            color: $fondoHeader;
-            border-radius: 50%;
+            @include colorFondo($fondoHeader,$rojo);  // Este include añade el color y el fondo
+            border-radius: $bordeCircular;  // Borde circular
+            // Ajustamos margenes y padding
             margin-top: 11px;
             margin-left: 2%;
             padding: 1%;

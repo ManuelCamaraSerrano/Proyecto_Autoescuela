@@ -85,7 +85,7 @@
         
     }
     ?>
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="" method="post" enctype="multipart/form-data" class="pregunta">
         <h1>Alta de Preguntas</h1>
         <label>Tematica: </label> <select name="tematica">
             <?php 
@@ -97,28 +97,28 @@
             ?>
         </select>  <br> <br>
 
-        <label>Enunciado: </label> <br> <textarea name="enunciado" rows="5" cols="20"></textarea> 
+        <label>Enunciado: </label> <br> <textarea name="enunciado" rows="8" cols="60"></textarea> 
         <?php if(isset($validacion->errores['enunciado'])) echo $validacion->errores['enunciado'] ?>  <br> <br>
 
         <label>Foto: </label>  <input type="file" name="foto" class="foto"> 
         <?php if(isset($validacion->errores['apellidos']))  echo $validacion->errores['apellidos'] ?>  <br> <br> 
 
-        <label>Opcion 1</label> <br>
+        <label>Opcion 1:</label> <br>
         <input type="text" name="opcion1" class="opcion1">        
         <input type="radio" name="opcion" class="opcion1" value="1"> 
         <?php if(isset($validacion->errores['opcion1'])) echo $validacion->errores['opcion1'] ?>  <br>
 
-        <label>Opcion 2</label> <br>
+        <label>Opcion 2:</label> <br>
         <input type="text" name="opcion2" class="opcion2"> 
         <input type="radio" name="opcion" class="opcion2" value="2"> 
         <?php if(isset($validacion->errores['opcion2'])) echo $validacion->errores['opcion2'] ?>  <br>
 
-        <label>Opcion 3</label> <br>
+        <label>Opcion 3:</label> <br>
         <input type="text" name="opcion3" class="opcion3"> 
         <input type="radio" name="opcion" class="opcion3" value="3"> 
         <?php if(isset($validacion->errores['opcion3'])) echo $validacion->errores['opcion3'] ?>  <br>
 
-        <label>Opcion 4</label> <br>
+        <label>Opcion 4:</label> <br>
         <input type="text" name="opcion4" class="opcion4"> 
         <input type="radio" name="opcion" class="opcion4" value="4"> 
         <?php if(isset($validacion->errores['opcion4'])) echo $validacion->errores['opcion4'] ?>  <br> <br>

@@ -7,4 +7,48 @@ $fondoHeader: white;
 $rojo: #bf0000;
 $negro: black;
 $tamanioLetraMenu: 30px;
-$tamanioLetraPie: 20px;
+$tamanioLetraPie: 18px;
+$alturaHeader: 130px;
+$tamaniologo: 150px;
+$tamanioImgUsu: 100px;
+$bordeCircular: 50%;
+$tamanioLista: 60px;
+$fondoTwitter: #1da1f2;
+$fondoFacebook: #4968aa;
+$fondoInsta: #d22181;
+$tamanioNav: 570px;
+$tamaniofooter: 96%;
+$tamanioh1: 30px;
+$tamaniohr: 900px;
+$tamanioForm:450px;
+$tamanioLogin:350px;
+$tamanioLetra: 130%;
+$tamanioInput: 90%;
+$tamanioBotonPag: 70px;
+
+
+// Tipo de letra para los h1 
+@font-face{
+    font-family: letraH1;
+    src: url(../../fonts/Merienda-Bold.ttf);
+}
+
+// Tipo de letra para el menu y cabeceras de las tablas
+@font-face{
+    font-family: letramenu;
+    src: url(../../fonts/Viga-Regular.ttf);
+}
+
+
+// Tipo de letra para el body 
+@font-face{
+    font-family: letraPrincipal;
+    src: url(../../fonts/Lora-VariableFont_wght.ttf);
+}
+
+// Letra menu
+@import url('https://fonts.googleapis.com/css2?family=Viga&display=swap');
+
+// Letra body
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap');
+

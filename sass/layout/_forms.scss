@@ -1,21 +1,27 @@
+// Estilos para los formularios
+// Importamos las variables
+@import "../utilities/variables";
+
+// Importamos los mixins
+@import "../utilities/mixins";
+
 form{
     margin:auto;
-    background: #FFFFFF;
+    @include colorFondo($negro,$fondoHeader);  // Introducimos el color y el fondo
     padding: 2%;
-    border-radius: 8px 8px 8px 8px;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    border-radius: 8px 8px 8px 8px; // Bordemaos un poco los margenes
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%); // Introducimos un efecto de sombra
     line-height: 25px;
     margin-top: 6%;
-    width: 450px;
+    width: $tamanioForm;
 
     &.login{
-        float: left;
-        width: 350px;
-        height: 350px;
-    
+        float: left; // Flotamos a la derecha
+        @include dimensiones($tamanioLogin,$tamanioLogin); // Asiganmos la anchura y la altura
+
+        // Estilos para los checkbox que estan dentro de un formulario
         input[type="checkbox"]{
-            width: 10%;
-            height: 6%;
+            @include dimensiones(10%,6%); // Asiganmos la anchura y la altura
             display: block;
             margin-bottom: 4%;
         }
@@ -28,40 +34,93 @@ form{
     }
 
     &.cambiaContrasenia{
+        // Flotamos a la derecha
         float: left;
-        height: 280px;
+        height: 280px; // Asignamos una altura
     }
 
+    // Estilos para el formulario con la clase examen
     &.examen{
-        width: 80%;
-        height: 80%;
+        @include dimensiones(80%,80%); // Asignamos la altura y la anchura 
     
+        // Estilos para los input que no son botones
         input:not([type="submit"]){
-            font-size: 130%;
-            width: 40%;
-            height: 5%;
+            font-size: $tamanioLetra;
+            @include dimensiones(40%,5%);  // Introducimos la anchura y la altura
             padding: 5px;
+
             &.pequenio{
                 width: 6%;
             }
+
         }
-        
+        // Estilos para los input que son botones
         input[type="submit"]{
             margin-top: 8%;
             margin-left: 45%;
-            width: 100px;
-            height: 50px;
+            @include dimensiones(100px,50px);
         }
     
         section{
             float: left;
-            width: 700px;
+            width: 700px; // Introducimos una anchura
+            // Ajustamos los margenes
             margin: 0;
             margin-left: 5%;
             margin-bottom: 2%;
         }
+
+        // Estilos para el icono de busqueda
+        span{
+            &.fa-search{
+                position:absolute;
+                margin-top: 6%;
+                margin-left: 8%;
+            }
+        }
+
+        // Estilos para el filtro
+        #filtro{
+            float: left;
+            margin-top: 2%;
+            border-radius: 20px 20px 20px 20px;  // Aplicamos un borde redondeado
+            font-size: $tamanioLetra;
+            width: 18%;
+            padding: 5px;
+            padding-left: 10px;
+        }
     }
 
+    // Estilos para el formulario de preguntas
+    &.pregunta{
+        width: 580px;
+
+        // Estilos para los input que no son botones
+        input[type="text"]{
+            font-size: $tamanioLetra;
+            @include dimensiones(70%,5%);
+            margin-left: 5%;
+            padding: 5px;
+        }
+
+        // Estilos para los input que no son botones
+        input[type="radio"]{
+            float: left;
+            @include dimensiones(15px,15px); // Ajustamos el tamaño
+            margin-left: 5%;
+            
+        }
+
+        label{
+            margin-top: 2%;
+        }
+
+        input[type="file"]{
+            font-size: $tamanioLetra;
+        }
+    }
+
+    // Estilos para el mensaje de error
     p{
         color: red;
         margin-left: 10%;
@@ -71,8 +130,9 @@ form{
     }
 
     h1{
-        text-align: center;
-        font-size: 160%;
+        font-family: letraH1;
+        text-align: center;  // Centramos el texto
+        font-size: 160%;  // Le aplicamos un tamaño a la letra
         margin-bottom: 3%;
       }
 
@@ -83,10 +143,39 @@ form{
         text-align: left;
     }
 
-    input:not([type="submit"]){
-        border-radius: 5px 5px 5px 5px;
+    input[type="text"]{
+        border-radius: 5px 5px 5px 5px;  // Aplicamos un borde redondeado 
         font-size: 120%;
-        width: 90%;
+        width: $tamanioInput;
+        padding: 2%;
+        @include transiciones(box-shadow,1s);  // Aplicamos una transición de sombreado a las cajas de texto
+
+        &:hover{
+            box-shadow: 0px 8px 8px $negro; // Introducimos un efecto de sombra;
+        }
+    }
+
+    // Estilos para los input del tipo file
+    input[type="file"]{
+        border-radius: 5px 5px 5px 5px;  // Aplicamos un borde redondeado 
+        font-size: 120%;
+        width: $tamanioInput;
+        padding: 2%;
+    }
+
+    // Estilos para los input del tipo password
+    input[type="password"]{
+        border-radius: 5px 5px 5px 5px;  // Aplicamos un borde redondeado 
+        font-size: 120%;
+        width: $tamanioInput;
+        padding: 2%;
+    }
+
+    // Estilos para los input del tipo password
+    input[type="date"]{
+        border-radius: 5px 5px 5px 5px;  // Aplicamos un borde redondeado 
+        font-size: 120%;
+        width: $tamanioInput;
         padding: 2%;
     }
     
@@ -95,6 +184,7 @@ form{
         float: left;
     }
 
+    // Estilos para los select que estan dentro de un formulario
     select{
         width: 150px;
         padding: 3px;
@@ -102,23 +192,6 @@ form{
         margin-bottom: 3%;
     }
 
-    span{
-        &.fa-search{
-            position:absolute;
-            margin-top: 6%;
-            margin-left: 8%;
-        }
-    }
-
-    #filtro{
-        float: left;
-        margin-top: 2%;
-        border-radius: 20px 20px 20px 20px;
-        font-size: 130%;
-        width: 18%;
-        padding: 5px;
-        padding-left: 10px;
-    }
     table{
         display: inline;
     }

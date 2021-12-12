@@ -1,3 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap");
+@font-face {
+  font-family: letraH1;
+  src: url(../../fonts/Merienda-Bold.ttf);
+}
+@font-face {
+  font-family: letramenu;
+  src: url(../../fonts/Viga-Regular.ttf);
+}
+@font-face {
+  font-family: letraPrincipal;
+  src: url(../../fonts/Lora-VariableFont_wght.ttf);
+}
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -52,7 +94,20 @@ table {
   border-spacing: 0;
 }
 
+@font-face {
+  font-family: letraH1;
+  src: url(../../fonts/Merienda-Bold.ttf);
+}
+@font-face {
+  font-family: letramenu;
+  src: url(../../fonts/Viga-Regular.ttf);
+}
+@font-face {
+  font-family: letraPrincipal;
+  src: url(../../fonts/Lora-VariableFont_wght.ttf);
+}
 body {
+  font-family: "Lora", serif;
   background-color: #f0f2f5;
 }
 
@@ -64,6 +119,18 @@ body {
   width: 250px;
 }
 
+@font-face {
+  font-family: letraH1;
+  src: url(../../fonts/Merienda-Bold.ttf);
+}
+@font-face {
+  font-family: letramenu;
+  src: url(../../fonts/Viga-Regular.ttf);
+}
+@font-face {
+  font-family: letraPrincipal;
+  src: url(../../fonts/Lora-VariableFont_wght.ttf);
+}
 table {
   background-color: #3e4750;
   border-collapse: collapse;
@@ -76,6 +143,9 @@ table thead {
   background-color: #bf0000;
   border-bottom: solid 5px black;
   color: white;
+}
+table th {
+  font-family: "Viga", sans-serif;
 }
 table th, table td {
   padding: 20px;
@@ -111,9 +181,34 @@ table tr.desactivado {
   text-align: center;
 }
 
+@font-face {
+  font-family: letraH1;
+  src: url(../../fonts/Merienda-Bold.ttf);
+}
+@font-face {
+  font-family: letramenu;
+  src: url(../../fonts/Viga-Regular.ttf);
+}
+@font-face {
+  font-family: letraPrincipal;
+  src: url(../../fonts/Lora-VariableFont_wght.ttf);
+}
+@font-face {
+  font-family: letraH1;
+  src: url(../../fonts/Merienda-Bold.ttf);
+}
+@font-face {
+  font-family: letramenu;
+  src: url(../../fonts/Viga-Regular.ttf);
+}
+@font-face {
+  font-family: letraPrincipal;
+  src: url(../../fonts/Lora-VariableFont_wght.ttf);
+}
 form {
   margin: auto;
-  background: #FFFFFF;
+  background-color: white;
+  color: black;
   padding: 2%;
   border-radius: 8px 8px 8px 8px;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
@@ -166,6 +261,42 @@ form.examen section {
   margin-left: 5%;
   margin-bottom: 2%;
 }
+form.examen span.fa-search {
+  position: absolute;
+  margin-top: 6%;
+  margin-left: 8%;
+}
+form.examen #filtro {
+  float: left;
+  margin-top: 2%;
+  border-radius: 20px 20px 20px 20px;
+  font-size: 130%;
+  width: 18%;
+  padding: 5px;
+  padding-left: 10px;
+}
+form.pregunta {
+  width: 580px;
+}
+form.pregunta input[type=text] {
+  font-size: 130%;
+  width: 70%;
+  height: 5%;
+  margin-left: 5%;
+  padding: 5px;
+}
+form.pregunta input[type=radio] {
+  float: left;
+  width: 15px;
+  height: 15px;
+  margin-left: 5%;
+}
+form.pregunta label {
+  margin-top: 2%;
+}
+form.pregunta input[type=file] {
+  font-size: 130%;
+}
 form p {
   color: red;
   margin-left: 10%;
@@ -174,6 +305,7 @@ form p {
   font-weight: bold;
 }
 form h1 {
+  font-family: letraH1;
   text-align: center;
   font-size: 160%;
   margin-bottom: 3%;
@@ -184,7 +316,34 @@ form label {
   font-size: 130%;
   text-align: left;
 }
-form input:not([type=submit]) {
+form input[type=text] {
+  border-radius: 5px 5px 5px 5px;
+  font-size: 120%;
+  width: 90%;
+  padding: 2%;
+  -webkit-transition: box-shadow 1s linear;
+  -webkit-transition: -webkit-box-shadow 1s linear;
+  transition: -webkit-box-shadow 1s linear;
+  transition: box-shadow 1s linear;
+  transition: box-shadow 1s linear, -webkit-box-shadow 1s linear;
+}
+form input[type=text]:hover {
+  -webkit-box-shadow: 0px 8px 8px black;
+          box-shadow: 0px 8px 8px black;
+}
+form input[type=file] {
+  border-radius: 5px 5px 5px 5px;
+  font-size: 120%;
+  width: 90%;
+  padding: 2%;
+}
+form input[type=password] {
+  border-radius: 5px 5px 5px 5px;
+  font-size: 120%;
+  width: 90%;
+  padding: 2%;
+}
+form input[type=date] {
   border-radius: 5px 5px 5px 5px;
   font-size: 120%;
   width: 90%;
@@ -199,24 +358,34 @@ form select {
   font-size: 130%;
   margin-bottom: 3%;
 }
-form span.fa-search {
-  position: absolute;
-  margin-top: 6%;
-  margin-left: 8%;
-}
-form #filtro {
-  float: left;
-  margin-top: 2%;
-  border-radius: 20px 20px 20px 20px;
-  font-size: 130%;
-  width: 18%;
-  padding: 5px;
-  padding-left: 10px;
-}
 form table {
   display: inline;
 }
 
+@font-face {
+  font-family: letraH1;
+  src: url(../../fonts/Merienda-Bold.ttf);
+}
+@font-face {
+  font-family: letramenu;
+  src: url(../../fonts/Viga-Regular.ttf);
+}
+@font-face {
+  font-family: letraPrincipal;
+  src: url(../../fonts/Lora-VariableFont_wght.ttf);
+}
+@font-face {
+  font-family: letraH1;
+  src: url(../../fonts/Merienda-Bold.ttf);
+}
+@font-face {
+  font-family: letramenu;
+  src: url(../../fonts/Viga-Regular.ttf);
+}
+@font-face {
+  font-family: letraPrincipal;
+  src: url(../../fonts/Lora-VariableFont_wght.ttf);
+}
 header {
   background-color: white;
   height: 130px;
@@ -256,16 +425,25 @@ header .social ul li a {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  background-color: #bf0000;
   color: white;
-  background: #bf0000;
   padding: 10px;
-  border-radius: 50px;
+  border-radius: 50%;
   text-decoration: none;
-  -webkit-transition: padding 1s ease;
-  transition: padding 1s ease;
+  -webkit-transition: all 0.5s linear;
+  transition: all 0.5s linear;
 }
-header .social ul li a:hover {
-  padding: 20px 20px;
+header .social ul li a.fa-twitter:hover {
+  padding: 15px 15px;
+  background: #1da1f2;
+}
+header .social ul li a.fa-instagram:hover {
+  padding: 15px 15px;
+  background: #d22181;
+}
+header .social ul li a.fa-facebook:hover {
+  padding: 15px 15px;
+  background: #4968aa;
 }
 header #fotoUsu {
   float: left;
@@ -284,11 +462,36 @@ header .editarSalir a {
   padding: 1%;
 }
 
+@font-face {
+  font-family: letraH1;
+  src: url(../../fonts/Merienda-Bold.ttf);
+}
+@font-face {
+  font-family: letramenu;
+  src: url(../../fonts/Viga-Regular.ttf);
+}
+@font-face {
+  font-family: letraPrincipal;
+  src: url(../../fonts/Lora-VariableFont_wght.ttf);
+}
+@font-face {
+  font-family: letraH1;
+  src: url(../../fonts/Merienda-Bold.ttf);
+}
+@font-face {
+  font-family: letramenu;
+  src: url(../../fonts/Viga-Regular.ttf);
+}
+@font-face {
+  font-family: letraPrincipal;
+  src: url(../../fonts/Lora-VariableFont_wght.ttf);
+}
 nav {
   -webkit-box-shadow: 0px 10px 10px black;
           box-shadow: 0px 10px 10px black;
-  width: 550px;
+  width: 570px;
   background-color: #bf0000;
+  color: white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -323,29 +526,54 @@ nav ul li ul {
           box-shadow: 0px 10px 10px black;
 }
 nav a {
+  font-family: "Viga", sans-serif;
   text-decoration: none;
   font-size: 23px;
   color: white;
   padding: 12px 20px;
   display: block;
-  -webkit-transition: background-color 1s ease;
-  transition: background-color 1s ease;
+  -webkit-transition: background-color 1s linear;
+  transition: background-color 1s linear;
 }
 nav a:hover {
   background-color: #bf0000;
 }
 
+@font-face {
+  font-family: letraH1;
+  src: url(../../fonts/Merienda-Bold.ttf);
+}
+@font-face {
+  font-family: letramenu;
+  src: url(../../fonts/Viga-Regular.ttf);
+}
+@font-face {
+  font-family: letraPrincipal;
+  src: url(../../fonts/Lora-VariableFont_wght.ttf);
+}
+@font-face {
+  font-family: letraH1;
+  src: url(../../fonts/Merienda-Bold.ttf);
+}
+@font-face {
+  font-family: letramenu;
+  src: url(../../fonts/Viga-Regular.ttf);
+}
+@font-face {
+  font-family: letraPrincipal;
+  src: url(../../fonts/Lora-VariableFont_wght.ttf);
+}
 footer {
   width: 96%;
   height: 350px;
   bottom: 0;
   margin-top: 6%;
   background-color: #242b31;
+  color: white;
   padding: 2%;
   border-top: solid #bf0000 6px;
 }
 footer h1 {
-  color: white;
   font-size: 30px;
   margin-left: 10%;
   margin-bottom: 1%;
@@ -361,7 +589,7 @@ footer ul {
   list-style: none;
   display: block;
   margin-left: 8%;
-  font-size: 20px;
+  font-size: 18px;
   color: white;
 }
 footer ul p {
@@ -375,8 +603,8 @@ footer ul li {
 }
 footer ul a {
   color: white;
-  -webkit-transition: color 1s ease;
-  transition: color 1s ease;
+  -webkit-transition: color 1s linear;
+  transition: color 1s linear;
 }
 footer ul a:hover {
   color: #bf0000;
@@ -393,6 +621,30 @@ footer hr {
   border-radius: 10px 10px 10px 10px;
 }
 
+@font-face {
+  font-family: letraH1;
+  src: url(../../fonts/Merienda-Bold.ttf);
+}
+@font-face {
+  font-family: letramenu;
+  src: url(../../fonts/Viga-Regular.ttf);
+}
+@font-face {
+  font-family: letraPrincipal;
+  src: url(../../fonts/Lora-VariableFont_wght.ttf);
+}
+@font-face {
+  font-family: letraH1;
+  src: url(../../fonts/Merienda-Bold.ttf);
+}
+@font-face {
+  font-family: letramenu;
+  src: url(../../fonts/Viga-Regular.ttf);
+}
+@font-face {
+  font-family: letraPrincipal;
+  src: url(../../fonts/Lora-VariableFont_wght.ttf);
+}
 input[type=submit] {
   font-size: 130%;
   border-radius: 5px 5px 5px 5px;
@@ -411,8 +663,28 @@ input[type=submit] {
   background-color: #3e4750;
   color: white;
   border-color: #3e4750;
+  -webkit-transition: background-color 1s linear;
+  transition: background-color 1s linear;
+}
+.paginacion button.activo {
+  background-color: #bf0000;
+}
+.paginacion button:hover {
+  background-color: #bf0000;
 }
 
+@font-face {
+  font-family: letraH1;
+  src: url(../../fonts/Merienda-Bold.ttf);
+}
+@font-face {
+  font-family: letramenu;
+  src: url(../../fonts/Viga-Regular.ttf);
+}
+@font-face {
+  font-family: letraPrincipal;
+  src: url(../../fonts/Lora-VariableFont_wght.ttf);
+}
 main#contenedorExamen {
   width: 70%;
   margin-left: 15%;
@@ -452,4 +724,17 @@ main#contenedorExamen section div {
   font-size: 130%;
   margin-top: 2%;
   margin-left: 40%;
+}
+
+@font-face {
+  font-family: letraH1;
+  src: url(../../fonts/Merienda-Bold.ttf);
+}
+@font-face {
+  font-family: letramenu;
+  src: url(../../fonts/Viga-Regular.ttf);
+}
+@font-face {
+  font-family: letraPrincipal;
+  src: url(../../fonts/Lora-VariableFont_wght.ttf);
 }/*# sourceMappingURL=main.css.map */

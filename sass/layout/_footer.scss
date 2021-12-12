@@ -3,19 +3,22 @@
 // Importamos las variables
 @import "../utilities/variables";
 
+// Importamos los mixins
+@import "../utilities/mixins";
+
+
 footer{
-    // Le colocamos una posicion fija y en la parte inferior de la página
-    width: 96%;
-    height: 350px;
+    // Aplicamos tamaño y altura al footer
+    @include dimensiones($tamaniofooter,350px);
     bottom: 0;
     margin-top: 6%;
-    background-color: $grisOscuro;
+    @include colorFondo($fondoHeader,$grisOscuro); // Include para introducir el color y el fondo
     padding: 2%;
     border-top: solid $rojo 6px;
 
     h1{
-        color: white;
-        font-size: 30px;
+        font-size: $tamanioh1; // Asiganmos un tamaño a la letra
+        // Asignamos unos margenes
         margin-left: 10%;
         margin-bottom: 1%;
     }
@@ -23,13 +26,12 @@ footer{
     iframe{
         // Lo flotamos a la derecha, le asignamos un tamaño y le ajustamos los margenes
         float: left;
-        width: 400px;
-        height: 300px;
+        @include dimensiones(400px,300px); // Include para añadir anchura y altura
         margin-left: 2%;
     }
     ul{
         float: left;
-        list-style: none;
+        list-style: none; // Quitamos los estilos por defecto de una lista
         display: block;
         margin-left: 8%;
         font-size: $tamanioLetraPie;
@@ -39,15 +41,14 @@ footer{
             margin-bottom: 15%;
         }
         li{
+            // Quitamos los estilos por defecto de una lista
             list-style:none;
-            display:block;
+            display:block;  // Ponemos la lista una debajo de la otra
             margin-bottom: 18%;
         }
         a{
             color: $fondoHeader;
-            -webkit-transition:color 1s ease;
-            -moz-transition:color 1s ease;
-            transition:color 1s ease; 
+            @include transiciones(color,1s);  // Aplicamos una transicion que cambia el color
             &:hover{
                 color: $rojo;
                 text-decoration: none;
@@ -55,12 +56,14 @@ footer{
         }
     }
     hr{
+        // Lo flotamos hacia la derecha
         float: left;
-        width: 900px;
-        height: 2px;
-        background-color: $fondoHeader;
+        @include dimensiones($tamaniohr,2px); // Le introducimos unas dimensiones 
+        background-color: $fondoHeader;  // Introducimos un fondo
+        // Ajustamos unos margenes
         margin-top:2%;
         margin-left: 6%;
+        // Ajustamos los bordes
         border: solid $fondoHeader;
         border-radius: 10px 10px 10px 10px;
     }
