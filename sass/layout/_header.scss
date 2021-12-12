@@ -18,6 +18,11 @@ header{
         margin-top: 1%;
         margin-left: 5%;
         width: $tamaniologo;
+        @include transicionesSinPropiedad(1s);
+
+        &:hover{
+            @include transformRotate(); // Le aplicamos una transformacion para que rote la imagen
+        }
     }
     nav{
         // Lo flotamos a la derecha y le ajustamos los margenes

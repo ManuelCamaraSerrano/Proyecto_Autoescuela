@@ -16,9 +16,29 @@
     transition: $propiedad $duracion $tiempo;
   }
 
+   // Mixin que le das la propiedad, la duracion y el tiempo y te introduce la transicion
+ @mixin transicionesSinPropiedad($duracion,$tiempo:linear) {
+  -moz-transition:  $duracion $tiempo;
+  -webkit-transition: $duracion $tiempo;
+  transition:  $duracion $tiempo;
+}
+
   // Este Mixin se encarga de introducir la altura y la anchura, introduciendoselas como parametros
   @mixin dimensiones($anchura,$altura){
       width: $anchura;
       height: $altura;
+  }
+
+  // Mixin de transformacion que hace que elemento roté
+  @mixin transformRotate(){
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+  }
+
+  
+  // Mixin de transformacion que hace que elemento roté
+  @mixin transformscale(){
+    transform: scale(1);
+    -webkit-transform: scale(1.2);
   }
 

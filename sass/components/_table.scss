@@ -3,20 +3,22 @@
 // Importamos las variables
 @import "../utilities/variables";
 
+// Importamos los mixins
+@import "../utilities/mixins";
+
 table{
 	background-color: $grisClaro;
 	border-collapse: collapse;
     margin-left: 14%;
-	width: 75%;
-    height: 200px;
-    color: white;
+    @include dimensiones(75%,200px); // Incluimos las dimensiones
+
+    color: $fondoHeader;
     thead{
-        background-color: $rojo;
+        @include colorFondo($fondoHeader,$rojo); // Asignamos color y fondo
         border-bottom: solid 5px $negro;
-        color: white;
     }
     th{
-        font-family: 'Viga', sans-serif;;
+        font-family: 'Viga', sans-serif;; // Le ponemos un tipo de fuente a los th distinto a los demás
     }
     th, td{
         padding: 20px;
@@ -27,9 +29,11 @@ table{
         &.marcado{
             border:3px solid blue;
         }
+        // Esta clase sirve para ocultar algunos tr
         &.oculto{
-            display:none;
+            display:none; 
         }
+        // A los pares les mete el fondo grisOscuro
         &:nth-child(even){
             background-color: $grisOscuro ;
         }
@@ -48,10 +52,9 @@ table{
 
 .tablaExamen{
     float: left;
-    width: 550px;
+    @include dimensiones(550px,600px); // Añadimos las dimensiones
     margin-left: 4%;
-    height: 600px;
-    overflow-y: scroll;
+    overflow-y: scroll; // Le añadimos el scroll
 
     th, td{
         width: 100%;

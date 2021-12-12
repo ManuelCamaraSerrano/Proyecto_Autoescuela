@@ -12,6 +12,12 @@ input[type="submit"]{
     border-radius: 5px 5px 5px 5px;
     @include colorFondo($fondoHeader,$rojo);
     border-color: $rojo ;
+
+    @include transicionesSinPropiedad(1s);
+
+    &:hover{
+        @include transformscale();
+    }
 }
 
 

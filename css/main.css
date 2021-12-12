@@ -28,6 +28,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap");
 @font-face {
   font-family: letraH1;
   src: url(../../fonts/Merienda-Bold.ttf);
@@ -106,6 +110,18 @@ table {
   font-family: letraPrincipal;
   src: url(../../fonts/Lora-VariableFont_wght.ttf);
 }
+@font-face {
+  font-family: letraH1;
+  src: url(../../fonts/Merienda-Bold.ttf);
+}
+@font-face {
+  font-family: letramenu;
+  src: url(../../fonts/Viga-Regular.ttf);
+}
+@font-face {
+  font-family: letraPrincipal;
+  src: url(../../fonts/Lora-VariableFont_wght.ttf);
+}
 body {
   font-family: "Lora", serif;
   background-color: #f0f2f5;
@@ -117,8 +133,26 @@ body {
   margin-right: 8%;
   margin-top: 4%;
   width: 250px;
+  -webkit-transition: 1s linear;
+  transition: 1s linear;
+}
+.logo:hover {
+  transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
 }
 
+@font-face {
+  font-family: letraH1;
+  src: url(../../fonts/Merienda-Bold.ttf);
+}
+@font-face {
+  font-family: letramenu;
+  src: url(../../fonts/Viga-Regular.ttf);
+}
+@font-face {
+  font-family: letraPrincipal;
+  src: url(../../fonts/Lora-VariableFont_wght.ttf);
+}
 @font-face {
   font-family: letraH1;
   src: url(../../fonts/Merienda-Bold.ttf);
@@ -141,8 +175,8 @@ table {
 }
 table thead {
   background-color: #bf0000;
-  border-bottom: solid 5px black;
   color: white;
+  border-bottom: solid 5px black;
 }
 table th {
   font-family: "Viga", sans-serif;
@@ -171,8 +205,8 @@ table tr.desactivado {
 .tablaExamen {
   float: left;
   width: 550px;
-  margin-left: 4%;
   height: 600px;
+  margin-left: 4%;
   overflow-y: scroll;
 }
 .tablaExamen th, .tablaExamen td {
@@ -398,6 +432,12 @@ header img {
   margin-top: 1%;
   margin-left: 5%;
   width: 150px;
+  -webkit-transition: 1s linear;
+  transition: 1s linear;
+}
+header img:hover {
+  transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
 }
 header nav {
   float: left;
@@ -651,6 +691,12 @@ input[type=submit] {
   background-color: #bf0000;
   color: white;
   border-color: #bf0000;
+  -webkit-transition: 1s linear;
+  transition: 1s linear;
+}
+input[type=submit]:hover {
+  transform: scale(1);
+  -webkit-transform: scale(1.2);
 }
 
 .paginacion {
