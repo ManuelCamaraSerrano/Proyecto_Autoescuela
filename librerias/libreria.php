@@ -35,6 +35,40 @@
         }
     }
 
+
+    function CorreoContraseniaOlvidada($gmail){
+      $mail = new PHPMailer();
+      $mail->IsSMTP();
+      // cambiar a 0 para no ver mensajes de error
+      $mail->SMTPDebug  = 0;                          
+      $mail->SMTPAuth   = true;
+      $mail->SMTPSecure = "tls";                 
+      $mail->Host       = "smtp.gmail.com";    
+      $mail->Port       = 587;                 
+      // introducir usuario de google
+      $mail->Username   = "manuelcs160@gmail.com"; 
+      // introducir clave
+      $mail->Password   = "Yogui2002";       
+      $mail->SetFrom('manuelcs160@gmail.com', 'Test');
+      // asunto
+      $mail->Subject    = utf8_decode("Restablecer Contraseña");
+      $mail->CharSet    = 'UFT-8';
+      // cuerpo
+      $mail->MsgHTML("<h1>Bienvenido a Autoescuela Juanchu</h1>
+                      <p>Pulse el siguiente enlace para restablecer su contraseña</p> <br>
+                      <a href='http://localhost/Proyecto_Autoescuela/Formularios/FormRestablecerContasenia.php?gmail=$gmail'>Restablecer contraseña</a>");
+      // destinatario
+      $address = $gmail;
+      $mail->AddAddress($address, "Test");
+      // enviar
+      $resul = $mail->Send();
+      if(!$resul) {
+        echo "Error" . $mail->ErrorInfo;
+      } else {
+        echo "Enviado";
+      }
+  }
+
     function generaContrasenia(){
       $caracteres='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
       $longpalabra=8;
@@ -98,7 +132,7 @@
         </div>
         <img src=".$foto."  id='fotoUsu'>
         <ul class='editarSalir'>
-          <li><a href='FormAltaUsuario.php' class='fas fa-edit'></a></li>
+          <li><a href='FormAltaUsuario.php?m=1' class='fas fa-edit'></a></li>
           <li><a href='../login/logoff.php' class='fas fa-door-open'></a></li>
         </ul>
     </header>";
@@ -140,6 +174,9 @@
     }
 
 
+    
+
+
 
     function pintaCabeceraExamen(){
       if(isset($_SESSION['usuario'])){
@@ -175,6 +212,42 @@
         <img src=".$foto."  id='fotoUsu'>
         <ul class='editarSalir'>
           <li><a href='FormAltaUsuario.php' class='fas fa-edit'></a></li>
+          <li><a href='../login/logoff.php' class='fas fa-door-open'></a></li>
+        </ul>
+    </header>";
+    }
+
+
+    function pintaCabeceraAlumno(){
+      if(isset($_SESSION['usuario'])){
+        $foto= $_SESSION['usuario']->foto;
+        $id = $_SESSION['usuario']->id;
+      }
+      else{
+        $foto="";
+      }
+      echo "<header>
+      <img src='../img/Logo.png' alt=''>
+        <nav>
+           <ul>
+              <li>
+                <a href=''>Examenes</a>
+                <ul>
+                   <li><a href='FormHistoricoExamen.php'>Histórico</a></li>
+                </ul>
+              </li>
+           </ul>
+        </nav>
+        <div class='social'>
+          <ul>
+            <li><a href='https://twitter.com/autojuanchu' lang='es-ES' class='fab fa-twitter'></a></li>
+            <li><a href='https://www.instagram.com/autoescuela_juanchu/' target='_blank' class='fab fa-instagram'></a></li>
+            <li><a href='https://es-es.facebook.com/autoescuelajuanchu/' target='_blank' class='fab fa-facebook'></a></li>
+          </ul>
+        </div>
+        <img src=".$foto."  id='fotoUsu'>
+        <ul class='editarSalir'>
+          <li><a href='FormAltaUsuario.php?m=1' class='fas fa-edit'></a></li>
           <li><a href='../login/logoff.php' class='fas fa-door-open'></a></li>
         </ul>
     </header>";

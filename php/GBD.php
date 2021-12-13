@@ -270,10 +270,11 @@
             $email=$a->email;
             $apellidos=$a->apellidos;
             $rol= $a->rol;
+            $foto = $a->foto;
             $fechanac= $a->fechanac;
             $activo= $a->activo;
             
-            $consulta = self::$conexion->prepare("UPDATE usuario SET email='$email', nombre='$nombre', apellidos='$apellidos', contrasenia='$contrasenia', fechanac='$fechanac' WHERE id=$id");
+            $consulta = self::$conexion->prepare("UPDATE usuario SET email='$email', nombre='$nombre', apellidos='$apellidos',foto='$foto', fechanac='$fechanac' WHERE id=$id");
             return $consulta->execute();
         }
 
@@ -446,5 +447,30 @@
             } 
             return $array;
         }
+
+        public static function leeUsuarioporGmail($gmail)
+        {
+            $resultado = self::$conexion->query("select id from usuario where email = '$gmail'");
+            while ($registro = $resultado->fetch()) {
+                $id = $registro['id'];
+            } 
+            return $id;
+        }
+
+        public static function leeListaPreguntas()
+        {
+            $consulta = self::$conexion->query("Select p.idpreguntas, p.enunciado, p.tematica,t.descripcion,  p.foto, p.respuesta_correcta FROM pregunta as p, tematica as t where p.tematica=t.idtematica;");
+            $preguntas=array();
+            while ($registro = $consulta->fetch()) 
+            {
+                $pregunta=new Pregunta($registro['idpreguntas'],$registro['enunciado'],$registro['tematica'],$registro['foto'],$registro['respuesta_correcta']);
+                $pregunta->nombreTematica=$registro['descripcion'];
+                $preguntas[]=$pregunta;
+            }
+            
+            return $preguntas;
+        }
+
+
 
     }

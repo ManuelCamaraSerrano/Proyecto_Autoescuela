@@ -19,17 +19,24 @@
 
         Sesion::iniciar();
         
-        /*if(!Sesion::existe("usuario"))
+        if(!Sesion::existe("usuario"))
         {
             header("Location: ../login/loginForm.php");
-        }*/
+        }
        DB::abreConexion();
         $validacion = new Validacion();
     ?>
 </head>
 <body>
     <?php
-        pintaCabecera();
+        $u= Sesion::leer("usuario");
+        if($u->rol=="alumno")
+        {
+            pintaCabeceraAlumno();
+        }
+        else{
+            pintaCabecera();
+        };
     ?>
     <main id="contenedorExamen">
 

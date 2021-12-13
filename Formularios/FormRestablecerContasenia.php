@@ -22,26 +22,44 @@
         {
             if($_POST['contraseña']==$_POST['contraseñaConfirm'])
             {
-                DB::abreConexion();
-                // Leemos el id del usuario
-                $idusuario = DB::leeIDUsuarioConfirm($_GET['codigoUsu']);
-
-                // Actualizamos la contrasenia
-                $respuesta = DB::actualizaContraseniaUsuario($idusuario,md5($_POST["contraseña"]));
-
-                if($respuesta)
+                if(isset($_GET['codigoUsu']))  // Si existe es que estamos creando nuestra contraseña
                 {
-                    echo "Usuario actualizado";
-                    //Borramos el registro en la tabla usuario por confirmar
-                    $borrado = DB::borraUsuarioConfirm($_GET['codigoUsu']);
+                    DB::abreConexion();
+                    // Leemos el id del usuario
+                    $idusuario = DB::leeIDUsuarioConfirm($_GET['codigoUsu']);
 
-                    // Registramos al usuario en la aplicación directamente pa que no tenga que pasar por el login
-                    $u = DB::leeUsuarioPorId($idusuario);
-                    Sesion::iniciar();
-                    Sesion::escribir('usuario',$u);
+                    // Actualizamos la contrasenia
+                    $respuesta = DB::actualizaContraseniaUsuario($idusuario,md5($_POST["contraseña"]));
+
+                    if($respuesta)
+                    {
+                        echo "Usuario actualizado";
+                        //Borramos el registro en la tabla usuario por confirmar
+                        $borrado = DB::borraUsuarioConfirm($_GET['codigoUsu']);
+
+                        // Registramos al usuario en la aplicación directamente pa que no tenga que pasar por el login
+                        $u = DB::leeUsuarioPorId($idusuario);
+                        Sesion::iniciar();
+                        Sesion::escribir('usuario',$u);
+                    }
+                    else{
+                        echo "No se ha podido actualizar la contraseña";
+                    }
                 }
                 else{
-                    echo "No se ha podido actualizar la contraseña";
+                    // Si no existe estamos en el modo de has olvidado tu contraseña que lo único que hay q hacer es actualizarla
+                    // Leemos que usuario es
+                    DB::abreConexion();
+                    $idusuario = DB::leeUsuarioporGmail($_GET['gmail']);
+
+                     // Actualizamos la contrasenia
+                     $respuesta = DB::actualizaContraseniaUsuario($idusuario,md5($_POST["contraseña"]));
+                     if($respuesta){
+                         echo "Contraseña restablecida";
+                     }
+                     else{
+                         echo "Error, la contraseña no se ha podido restablecer";
+                     }
                 }
 
             }

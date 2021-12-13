@@ -397,6 +397,15 @@ form select {
 form table {
   display: inline;
 }
+form .modificacion:-moz-read-only {
+  display: block;
+}
+form .modificacion:read-only {
+  display: block;
+}
+form .insertar {
+  display: none;
+}
 
 @font-face {
   font-family: letraH1;

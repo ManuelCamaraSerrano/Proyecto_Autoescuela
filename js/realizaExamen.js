@@ -46,6 +46,7 @@ window.addEventListener("load",function(){
             // Creamos los radios con sus labels
             var div1 = document.createElement("div");
             var radio1 = document.createElement("input");
+            radio1.id="op"+npregunta;
             radio1.type="radio";
             radio1.name="opcion";
             radio1.className="op"+r1;
@@ -54,6 +55,7 @@ window.addEventListener("load",function(){
 
             var div2 = document.createElement("div");
             var radio2 = document.createElement("input");
+            radio2.id="op"+npregunta;
             radio2.type="radio";
             radio2.name="opcion";
             radio2.className="op"+r2;
@@ -62,6 +64,7 @@ window.addEventListener("load",function(){
 
             var div3 = document.createElement("div");
             var radio3 = document.createElement("input");
+            radio3.id="op"+npregunta;
             radio3.type="radio";
             radio3.name="opcion";
             radio3.className="op"+r3;
@@ -70,6 +73,7 @@ window.addEventListener("load",function(){
 
             var div4 = document.createElement("div");
             var radio4 = document.createElement("input");
+            radio4.id="op"+npregunta;
             radio4.type="radio";
             radio4.name="opcion";
             radio4.className="op"+r4;

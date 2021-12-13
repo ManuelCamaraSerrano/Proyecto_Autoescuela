@@ -18,17 +18,26 @@
         // Iniciamos sesion y si no existe usuario logueado lo mandamos al login
         Sesion::iniciar();     
         
-        /*if(!Sesion::existe("usuario"))
+        if(!Sesion::existe("usuario"))
         {
             header("Location: ../login/loginForm.php");
-        }*/
+        }
         
+        $u= Sesion::leer("usuario");
         $validacion = new Validacion();
     ?>
 </head>
 <body>
     <?php
-        pintaCabecera();
+
+        if($u->rol=="alumno")
+        {
+            pintaCabeceraAlumno();
+        }
+        else{
+            pintaCabecera();
+        }
+        
             if(isset($_POST['aceptar']))
             {
                 // Validamos los datos

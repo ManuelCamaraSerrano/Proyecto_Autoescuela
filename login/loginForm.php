@@ -65,7 +65,7 @@
         <?php echo "<p>$error</p>";?>
         <input type="submit" name="login" class="login" value="Iniciar sesión"> <br><br>
         <label class="recuerdame">Recuerdame: </label> <input type="checkbox" name="check" checked=<?php $check ?>> 
-        <a href="">¿Has olvidado la contraseña?</a>
+        <a href="olvidaContrasenia.php">¿Has olvidado la contraseña?</a>
     </form>
 </body>
 </html>
