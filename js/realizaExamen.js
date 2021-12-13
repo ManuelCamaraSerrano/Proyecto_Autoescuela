@@ -93,6 +93,7 @@ window.addEventListener("load",function(){
             section.appendChild(div2);
             section.appendChild(div3);
             section.appendChild(div4);
+
         }
 
 
