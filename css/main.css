@@ -406,6 +406,10 @@ form .modificacion:read-only {
 form .insertar {
   display: none;
 }
+form span {
+  font-weight: bold;
+  color: #bf0000;
+}
 
 @font-face {
   font-family: letraH1;
@@ -729,10 +733,37 @@ input[type=submit]:hover {
 .paginacion button:hover {
   background-color: #bf0000;
 }
+.paginacion button.dudosa {
+  background-color: orange;
+}
 
 .botones button {
   width: 200px;
   background-color: #bf0000;
+}
+
+.gris {
+  float: left;
+  width: 30px;
+  height: 30px;
+  background: #3e4750;
+  border-radius: 50%;
+}
+
+.rojo {
+  float: left;
+  width: 30px;
+  height: 30px;
+  background: #bf0000;
+  border-radius: 50%;
+}
+
+.naranja {
+  float: left;
+  width: 30px;
+  height: 30px;
+  background: orange;
+  border-radius: 50%;
 }
 
 @font-face {
@@ -800,6 +831,13 @@ main#contenedorExamen section div {
   font-size: 130%;
   margin-top: 2%;
   margin-left: 40%;
+}
+main#contenedorExamen section button {
+  margin-top: 5%;
+  margin-left: 3%;
+  padding: 1%;
+  background: #bf0000;
+  color: white;
 }
 
 @font-face {

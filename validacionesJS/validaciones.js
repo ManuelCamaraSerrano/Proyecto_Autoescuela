@@ -39,3 +39,59 @@ String.prototype.esFecha=function(){
      }
      return respuesta;
 }
+
+function hayContenido(valor){
+    var respuesta = false;
+    if(valor!="")
+    {
+        respuesta=true;
+    }
+    return respuesta;
+}
+
+function validagmail(gmail){
+    respuesta = /^.+(\@gmail\.)(es|com)$/.test(gmail);
+    return respuesta;
+}
+
+function barajarArray(array) {
+    var tamanioArray = array.length;
+    var variableTemp;
+    var valorRandom;
+  
+    // Mientras queden elementos a mezclar
+    while (0 !== tamanioArray) {
+  
+      // Seleccionar un elemento sin mezclar
+      valorRandom = Math.floor(Math.random() * tamanioArray);
+      tamanioArray -= 1;
+  
+      // E intercambiarlo con el elemento actual
+      variableTemp = array[tamanioArray];
+      array[tamanioArray] = array[valorRandom];
+      array[valorRandom] = variableTemp;
+    }
+  
+    return array;
+  }
+
+  function crearPaginacion(npreguntas){
+    for (i=0; i<npreguntas; i++){
+        var boton = document.createElement('button');
+        
+        boton.className="desactivo";
+
+        boton.innerText=(i+1);
+        boton.id="boton"+(i+1);
+        // Controlamos el onclick del boton para que cuando pulse se active esa pregunta y las demás se oculten
+        boton.onclick = function(){
+            let section = document.querySelectorAll("section");
+            for(let i=0; i<section.length; i++){
+                section[i].className="desactivo";
+            }
+            
+            section[parseInt(this.innerText)-1].className="activo";
+        }
+        paginacion.appendChild(boton);
+        }
+    }

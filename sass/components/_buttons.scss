@@ -38,6 +38,10 @@ input[type="submit"]{
         &:hover{
             background-color: $rojo;
         }
+
+        &.dudosa{
+            background-color: orange;
+        }
     }
 }
 
@@ -47,4 +51,30 @@ input[type="submit"]{
         width: 200px;
         background-color: $rojo;
     }
+
+}
+
+
+.gris{
+    float: left;
+    width: 30px;
+    height: 30px;
+    background: #3e4750;
+    border-radius: 50%;
+}
+
+.rojo{
+    float: left;
+    width: 30px;
+    height: 30px;
+    background: $rojo;
+    border-radius: 50%;
+}
+
+.naranja{
+    float: left;
+    width: 30px;
+    height: 30px;
+    background: orange;
+    border-radius: 50%;
 }

@@ -11,9 +11,9 @@ window.addEventListener("load",function(){
    var npreguntas=document.getElementById("npreguntas");
    var pinsert = document.getElementById("pinsert");
    const filtro=document.getElementById("filtro");
+   var duracion = document.getElementById("duracion");
 
-
-   filtro.onkeyup=function(){
+   filtro.onkeydown=function(){
        const tr=tbody.getElementsByTagName("tr");
        for(let i=0;i<tr.length;i++){
            tr[i].classList.remove("marcado");

@@ -49,7 +49,13 @@
             $existe = Login::identificaUsuario($_POST['email'],$contrasenia,$check);
             if($existe)
             {
-                header("Location: ../Formularios/formUsuario.php");
+                if($_SESSION["usuario"]->rol=="alumno"){
+                    header("Location: ../Formularios/FormExamenPredifinido.php");
+                }
+                else{
+                    header("Location: ../Formularios/formUsuario.php");
+                }
+            
             }
             else{
                 $error="Usuario no encontrado";

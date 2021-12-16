@@ -12,6 +12,7 @@
             self::$conexion = new PDO('mysql:host=localhost;dbname=autoescuela', 'root', '');
         }
 
+        // Esta función lee los usuarios que hay
         public static function obtieneUsuarios(){
             $array = array();
             $resultado = self::$conexion->query("SELECT id, email, nombre, apellidos, contraseña, fechanac, rol, foto, activo FROM usuario");
@@ -22,6 +23,7 @@
             return $array;
         }
 
+        // Funcion que da de alta usuarios
         public static function altaUsuario(Usuario $a){
             $contrasenia= md5($a->contrasenia);
             $nombre=$a->nombre;
@@ -43,6 +45,7 @@
             return $consulta->execute();
         }
 
+        // Funcion que da de alta usuarios de forma masiva
         public static function altaUsuarioMasiva($nombre,$email){
             
             
@@ -53,6 +56,7 @@
             return $consulta->execute();
         }
 
+        // Funcion que busca un usuario
         public static function existeUsuario($email,$contrasenia)
         {
            $usuario=null;
@@ -67,6 +71,7 @@
             
         }
 
+        // Funcion que lee un usuario en concreto
         public static function leeUsuario($email,$contrasenia)
         {
             $u=null;
@@ -77,7 +82,7 @@
             
             return $u;
         }
-
+        // Función que lee usuarios por id
         public static function leeUsuarioPorId($id)
         {
             $u=null;
@@ -89,12 +94,14 @@
             return $u;
         }
 
+        // Funcion que actualiza un usuario
         public static function actualizarCampo(Usuario $a)
         {
             $consulta = self::$conexion->prepare("update users set foto='img/$a->correo.jpg' where correo='$a->correo'");
             return $consulta->execute();
         }
 
+        // Funcion que lee las tematicas que hay
         public static function leeTematicas(){
             $t=null;
             $array = array();
@@ -107,7 +114,7 @@
             return $array;
         }
 
-
+        // Funcion que busca tematica por nombre
         public static function buscaTematicaNombre($descripcion){
             $resultado = self::$conexion->query("SELECT idtematica FROM tematica where descripcion='$descripcion'");
             while ($registro = $resultado->fetch()) {
@@ -117,7 +124,7 @@
             return $id;
         }
 
-
+        // Funcion que da de alta preguntas
         public static function altaPregunta(Pregunta $p){
             $enunciado= $p->enunciado;
             $tematica=$p->tematica;
@@ -142,7 +149,7 @@
             }
         }
 
-
+        // Funcion que da de alta tematicas
         public static function altaTematica(Tematica $t){
             $descripcion= $t->descripcion;
             
@@ -152,7 +159,7 @@
 
             return $consulta->execute();
         }
-
+        // Funcion que da de alta respuestas 
         public static function altaRespuestas(Respuesta $r){
             $pregunta= $r->pregunta;
             $pregunta=intval($pregunta);
@@ -168,6 +175,7 @@
 
         }
 
+        // Funcion que lee los id de todas las preguntas
         public static function leeIdPreguntas()
         {
             $resultado = self::$conexion->query("SELECT idpreguntas FROM pregunta order by idpreguntas desc limit 1");
@@ -177,7 +185,7 @@
             
             return $id;
         }
-
+        // Funcion que lee todas las preguntas
         public static function leePreguntas()
         {
             $array = array();
@@ -189,7 +197,7 @@
             
             return $array;
         }
-
+        // Funcion que le preguntas por id
         public static function leePreguntaporID($id)
         {
             $resultado = self::$conexion->query("SELECT idpreguntas, enunciado, tematica, foto, respuesta_correcta FROM pregunta where idpreguntas=$id");
@@ -200,6 +208,7 @@
             return $p;
         }
 
+        // Funcion que lee repuesta por id
         public static function leeRespuestaPorPregunta($id)
         {
             $array = array();
@@ -211,7 +220,7 @@
             
             return $array;
         }
-
+        // Funcion que lee el id de la respuesta que indiquemos por parametro
         public static function leeIdRespuesta($limit)
         {
             $resultado = self::$conexion->query("SELECT id FROM respuesta order by id desc limit $limit");
@@ -221,7 +230,7 @@
             
             return $id;
         }
-
+        // Funcion que actualiza preguntas por su id
         public static function actualizaIdPregunta($idpregunta,$idrespuesta){
             
             $consulta = self::$conexion->prepare("Update pregunta set respuesta_correcta='$idrespuesta' where idpreguntas='$idpregunta'");
@@ -230,7 +239,7 @@
 
         }
 
-
+        // Funcion que da de alta examenes
         public static function altaExamen(Examen $e){
             $descripcion= $e->descripcion;
             $duracion=intval($e->duracion);
@@ -244,6 +253,7 @@
 
         }
 
+        // Funcion que lee los id de los examenes
         public static function leeIdExamen()
         {
             $resultado = self::$conexion->query("SELECT id FROM examen order by id desc limit 1");
@@ -254,7 +264,7 @@
             return $id;
         }
 
-
+        // Funcion que inserta una pregunta
         public static function insertaPreguntaExamen($idexamen,$idpregunta){
             
             $consulta = self::$conexion->prepare("Insert into examen_preguntas (idexamen,idpregunta) VALUES ($idexamen,$idpregunta)");
@@ -263,6 +273,7 @@
 
         }
 
+        // Funcion que actualiza un usuario
         public static function actualizaUsuario(Usuario $a){
             $id = intval($a->id);
             $contrasenia= $a->contrasenia;
@@ -278,24 +289,28 @@
             return $consulta->execute();
         }
 
+        // Funcion  que actualiza un usuario (Este sirve para las tablas de usuarios)
         public static function actualizaUsuarioTabla($id,$nombre,$rol,$fechanac,$activo){
   
             $consulta = self::$conexion->prepare("UPDATE usuario SET nombre='$nombre', rol='$rol', activo='$activo', fechanac='$fechanac' WHERE id=$id");
             return $consulta->execute();
         }
 
+        // Funcion que actualiza la tematica
         public static function actualizaTematica($descripcion, $id){
   
             $consulta = self::$conexion->prepare("UPDATE tematica SET descripcion='$descripcion' WHERE idtematica=$id");
             return $consulta->execute();
         }
 
+        // Funcion que actualiza una pregunta
         public static function actualizaPregunta($enunciado,$id){
         
             $consulta = self::$conexion->prepare("UPDATE pregunta SET enunciado='$enunciado' WHERE idpreguntas=$id");
             return $consulta->execute();
         }
 
+        // Funcion que da de alta un usuario confirm
         public static function altaUsuarioConfirm($idusuario, $codigo){
             $id= intval($idusuario);
 
@@ -305,6 +320,7 @@
 
         }
 
+        // Funcion que le los id de los usuarios
         public static function leeIdUsuario()
         {
             $resultado = self::$conexion->query("SELECT id FROM usuario order by id desc limit 1");
@@ -315,6 +331,7 @@
             return $id;
         }
 
+        // Funcion que le los id de los usuarios por confirmar
         public static function leeIDUsuarioConfirm($codigo)
         {
             $resultado = self::$conexion->query("SELECT idusuario FROM confirmarusuario where codigoconfirm='$codigo'");
@@ -325,7 +342,7 @@
             return $id;
         }
 
-
+        // Funcion que actualiza la contrasela del usuario
         public static function actualizaContraseniaUsuario($id, $contrasenia){
             $idusuario = intval($id);
             
@@ -333,24 +350,28 @@
             return $consulta->execute();
         }
 
+        // Funcion que borra el usuario por confirmar
         public static function borraUsuarioConfirm($codigo){
             
             $consulta = self::$conexion->prepare("delete from confirmarusuario WHERE codigoconfirm='$codigo'");
             return $consulta->execute();
         }
 
+        // Funcion que borra un usuario
         public static function borraUsuario($codigo){
             
             $consulta = self::$conexion->prepare("delete from usuario WHERE id='$codigo'");
             return $consulta->execute();
         }
 
+        // Funcion que borra una temtica
         public static function borraTematica($codigo){
             
             $consulta = self::$conexion->prepare("delete from tematica WHERE idtematica='$codigo'");
             return $consulta->execute();
         }
 
+        // Funcion que borra un pregunta
         public static function borraPregunta($codigo){
             
             $consulta = self::$conexion->prepare("delete from pregunta WHERE idpreguntas='$codigo'");
@@ -436,7 +457,7 @@
             return $e;
         }
 
-
+        // Funcion que le las preguntas por examen
         public static function leePreguntasPorExamen($id)
         {
             $array = array();
@@ -448,6 +469,7 @@
             return $array;
         }
 
+        // Funcion que lee los usuarios por gmail
         public static function leeUsuarioporGmail($gmail)
         {
             $resultado = self::$conexion->query("select id from usuario where email = '$gmail'");
@@ -457,6 +479,7 @@
             return $id;
         }
 
+        // Funcion que las preguntas con su nombre de tematica
         public static function leeListaPreguntas()
         {
             $consulta = self::$conexion->query("Select p.idpreguntas, p.enunciado, p.tematica,t.descripcion,  p.foto, p.respuesta_correcta FROM pregunta as p, tematica as t where p.tematica=t.idtematica;");
@@ -471,6 +494,15 @@
             return $preguntas;
         }
 
+
+        public static function altaExamenRealizado($idexamen, $idusuario, $ejecucion){
+            $id= intval($idusuario);
+
+            $consulta = self::$conexion->prepare("Insert into examenes_realizados (idexamen,id_usuario,fecha,ejecucion) VALUES ('$idexamen', '$id',NOW(),'$ejecucion')");
+
+            return $consulta->execute();
+
+        }
 
 
     }

@@ -8,6 +8,7 @@
     <script src="../js/Examen.js"></script>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../vendor/fontawesome/css/all.css">
+    <script src="../validacionesJS/validaciones.js"></script>
     <script src="../js/realizaExamen.js"></script>
     <?php
         require_once "../php/Sesion.php";
@@ -45,6 +46,13 @@
     <main class="paginacion" name="paginacion" id="paginacion">
 
     </main>
+
+    <div class="Leyenda">
+        <h1>Leyenda:</h1>
+        <span class="gris"></span><p>Sin Responder</p>
+        <span class="naranja"></span><p>Pregunta Dudosa</p>
+        <span class="rojo"></span><p>Pregunta Respondida</p>
+    </div>
 
     <?php
         pintaPieDePagina();

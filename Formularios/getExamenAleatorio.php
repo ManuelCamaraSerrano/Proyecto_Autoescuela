@@ -1,6 +1,7 @@
 <?php
     require_once "../php/GBD.php";
     require_once "../php/Examen.php";
+    require_once "../php/Sesion.php";
 
     DB::abreConexion();
 
@@ -30,5 +31,29 @@
     }
 
     echo json_encode($examenCompleto);
+
+
+
+    if(isset($_POST["exBarajado"]) && $_POST["respuestas"])
+    {
+        Sesion::iniciar();
+        $u = Sesion::leer("usuario");
+        $examenBarajado = json_decode($_POST["exBarajado"]);
+        $respuestas = json_decode($_POST["respuestas"]);
+
+        $arrayFinal = array_merge($examenBarajado,$respuestas);
+
+        DB::abreConexion();
+        $introducido = DB::altaExamenRealizado($examenBarajado[0][0]->id,$u->id,json_encode($arrayFinal));
+
+        if($introducido){
+            echo "ok";
+            header("Location: formUsuario.php");
+        }
+        else{
+            echo "no";
+        }
+
+    }
 
     
